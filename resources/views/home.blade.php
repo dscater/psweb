@@ -43,9 +43,6 @@
             @if(Auth::user()->tipo == 'ALMACENERO')
             @include('includes.home_almacenero')
             @endif
-            @if(Auth::user()->tipo == 'CAJA')
-            @include('includes.home_caja')
-            @endif
             <!-- #END# Widgets -->
         </div>
     </section>

@@ -7,7 +7,7 @@
 <li class="{{request()->is('proveedores*')? 'active':''}}">
     <a href="{{route('proveedores.index')}}">
         <i class="material-icons">local_shipping</i>
-        <span>Proveedores</span>
+        <span>Pymes</span>
     </a>
 </li>
 <li class="{{request()->is('productos*')? 'active':''}}">

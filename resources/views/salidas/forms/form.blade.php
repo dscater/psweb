@@ -7,7 +7,7 @@
             <div class="form-group form-float">
                 <div class="form-line">
                     {{ Form::text('rfid',null,['class'=>'form-control','required','id'=>'rfid']) }}
-                    <label class="form-label">Código RFID*</label>
+                    <label class="form-label">Código Único*</label>
                 </div>
             </div> 
         </div>
@@ -43,7 +43,7 @@
         <div class="col-md-12">
             <div class="card bg-blue stock_grupo">
                 <div class="header">
-                    <h4 id="titulo_grupo">GRUPO</h4>
+                    <h4 id="titulo_grupo">PRODUCTO</h4>
                 </div>
                 <div class="body">
                     <form action="">

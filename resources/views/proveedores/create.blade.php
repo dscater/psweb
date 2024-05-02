@@ -72,7 +72,7 @@ max-width: 100%;
     <div class="container-fluid">
         <div class="block-header">
             <h2>
-                REGISTRAR PROVEEDOR
+                REGISTRAR PYME
             </h2>
         </div>
         <!-- Basic Validation -->
@@ -80,7 +80,7 @@ max-width: 100%;
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>NUEVO PROVEEDOR</h2>
+                        <h2>NUEVO PYME</h2>
                         <small>Los campos con * son obligatorios.</small>
                     </div>
                     <div class="body">

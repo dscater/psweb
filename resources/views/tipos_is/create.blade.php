@@ -81,12 +81,6 @@ max-width: 100%;
                 </a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                <a href="{{ route('ventas.index') }}" class="btn btn-success">
-                    <i class="material-icons">local_atm</i>
-                    <span>Venta de productos</span>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('ingresos.create') }}" class="btn btn-info">
                     <i class="material-icons">local_shipping</i>
                     <span>Registrar ingresos</span>

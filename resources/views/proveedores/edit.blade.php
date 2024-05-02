@@ -72,7 +72,7 @@ max-width: 100%;
     <div class="container-fluid">
         <div class="block-header">
             <h2>
-                MODIFICAR PROVEEDOR
+                MODIFICAR PYMES
             </h2>
         </div>
         <!-- Basic Validation -->

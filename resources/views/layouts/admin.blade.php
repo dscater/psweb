@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -7,39 +8,41 @@
     <title>IVORFID</title>
 
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="{{asset('google-fonts/roboto.css')}}">
-    <link rel="stylesheet" href="{{asset('google-fonts/material-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('google-fonts/roboto.css') }}">
+    <link rel="stylesheet" href="{{ asset('google-fonts/material-icons.css') }}">
 
     <!-- Bootstrap Core Css -->
-    <link href="{{asset('AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     @yield('css')
 
     <!-- Custom Css -->
-    <link href="{{asset('AdminBSBMaterialDesign-master/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('AdminBSBMaterialDesign-master/css/style.css') }}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{asset('AdminBSBMaterialDesign-master/css/themes/all-themes.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
+    <link href="{{ asset('AdminBSBMaterialDesign-master/css/themes/all-themes.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
     <style type="text/css">
-            i.editar{
-            color:#4E9F18;
-        }
-        i.eliminar{
-            color:#E23949;
+        i.editar {
+            color: #4E9F18;
         }
 
-        i.editar:hover{
-            color:#52C008;
-        }
-        i.eliminar:hover{
-            color:#FF0A22;
+        i.eliminar {
+            color: #E23949;
         }
 
-        .invalid-feedback{
-            color:red;
+        i.editar:hover {
+            color: #52C008;
         }
 
-        .botones a{
+        i.eliminar:hover {
+            color: #FF0A22;
+        }
+
+        .invalid-feedback {
+            color: red;
+        }
+
+        .botones a {
             display: flex;
             width: 100%;
             justify-content: center;
@@ -47,8 +50,8 @@
             flex-direction: column;
         }
 
-        .bg-deep-purple:hover{
-            color:white;
+        .bg-deep-purple:hover {
+            color: white;
         }
     </style>
 </head>
@@ -89,13 +92,15 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="{{route('home')}}">@yield('nom_empresa')</a>
+                <a class="navbar-brand" href="{{ route('home') }}">@yield('nom_empresa')</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <li><a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             <i class="material-icons">power_settings_new</i>
                         </a>
@@ -111,31 +116,37 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{asset('imgs/users/'.Auth::user()->foto)}}" width="55" height="55" alt="User" />
+                    <img src="{{ asset('imgs/users/' . Auth::user()->foto) }}" width="55" height="55"
+                        alt="User" />
                 </div>
                 <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if(Auth::user()->datosUsuario)
-                    {{Auth::user()->datosUsuario->nom_u}} {{Auth::user()->datosUsuario->apep_u}} {{Auth::user()->datosUsuario->apem_u}}
-                    @else
-                    {{Auth::user()->name}}
-                    @endif
-                </div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if (Auth::user()->datosUsuario)
+                            {{ Auth::user()->datosUsuario->nom_u }} {{ Auth::user()->datosUsuario->apep_u }}
+                            {{ Auth::user()->datosUsuario->apem_u }}
+                        @else
+                            {{ Auth::user()->name }}
+                        @endif
+                    </div>
                     <div class="email">
-                        {{Auth::user()->tipo}}
+                        {{ Auth::user()->tipo }}
                     </div>
                     <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="{{route('users.config',Auth::user()->id)}}"><i class="material-icons">person</i>Perfil</a></li>
+                            <li><a href="{{ route('users.config', Auth::user()->id) }}"><i
+                                        class="material-icons">person</i>Perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
-                                <i class="material-icons">input</i>Salir
+                                    <i class="material-icons">input</i>Salir
                                 </a>
                             </li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
                                 @csrf
                             </form>
                         </ul>
@@ -147,15 +158,7 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">NAVEGACIÓN PRINCIPAL</li>
-                    @if(Auth::user()->tipo == 'ADMINISTRADOR')
                     @include('includes.menu_admin')
-                    @endif
-                    @if(Auth::user()->tipo == 'ALMACENERO')
-                    @include('includes.menu_almacenero')
-                    @endif
-                    @if(Auth::user()->tipo == 'CAJA')
-                    @include('includes.menu_caja')
-                    @endif
                 </ul>
             </div>
             <!-- #Menu -->
@@ -316,20 +319,20 @@
         <!-- #END# Right Sidebar -->
     </section>
 
-    <input type="text" value="{{asset('imgs')}}" id="url_imgs" hidden>
-    <input type="text" value="{{csrf_token()}}" id="token" hidden>
+    <input type="text" value="{{ asset('imgs') }}" id="url_imgs" hidden>
+    <input type="text" value="{{ csrf_token() }}" id="token" hidden>
     @yield('content')
 
     <!-- Jquery Core Js -->
-    <script src="{{asset('AdminBSBMaterialDesign-master/plugins/jquery/jquery-3.2.1.js')}}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/jquery/jquery-3.2.1.js') }}"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="{{asset('AdminBSBMaterialDesign-master/plugins/bootstrap/js/bootstrap.js')}}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/bootstrap/js/bootstrap.js') }}"></script>
 
     @yield('scripts')
 
     <!-- Demo Js -->
-    <script src="{{asset('AdminBSBMaterialDesign-master/js/demo.js')}}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/js/demo.js') }}"></script>
 </body>
 
 </html>

@@ -24,7 +24,7 @@
     <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                    <a href="{{ route('proveedores.create') }}" class="btn btn-primary"><i class="material-icons">local_shipping</i><span>Nuevo proveedor</span></a>
+                    <a href="{{ route('proveedores.create') }}" class="btn btn-primary"><i class="material-icons">local_shipping</i><span>Nuevo pyme</span></a>
                 </div>
             </div>
         <!-- Basic Examples -->
@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            LISTA DE PROVEEDORES
+                            LISTA DE PYMES
                         </h2>
                     </div>
                     <div class="body">

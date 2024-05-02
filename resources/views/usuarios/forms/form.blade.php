@@ -199,7 +199,7 @@
                 ''=> '',
                 'ADMINISTRADOR'=> 'ADMINISTRADOR',
                 'ALMACENERO'=> 'ALMACENERO',
-                'CAJA'=> 'CAJA',
+                'SUPERVISOR DE CALIDAD'=> 'SUPERVISOR DE CALIDAD',
                 ],$datosUsuario->user->tipo,['class'=>'form-control','id'=>'select_ci','required','id'=>'select_tipo']) }}
                 <label class="form-label" for="select_tipo">Tipo de usuario*</label>
             </div>
@@ -213,7 +213,7 @@
                 ''=> '',
                 'ADMINISTRADOR'=> 'ADMINISTRADOR',
                 'ALMACENERO'=> 'ALMACENERO',
-                'CAJA'=> 'CAJA',
+                'SUPERVISOR DE CALIDAD'=> 'SUPERVISOR DE CALIDAD',
                 ],null,['class'=>'form-control','id'=>'select_ci','required','id'=>'select_tipo']) }}
                 <label class="form-label" for="select_tipo">Tipo de usuario*</label>
             </div>

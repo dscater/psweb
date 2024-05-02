@@ -90,18 +90,6 @@
                                     <span>Movimiento de productos</span>
                                 </a>
                             </div>
-                            <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_libroCompras" class="btn btn-primary">
-                                    <i class="fa fa-file-invoice"></i>
-                                    <span>Libro de compras</span>
-                                </a>
-                            </div>
-                            <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_libroVentas" class="btn btn-primary">
-                                    <i class="fa fa-file-invoice"></i>
-                                    <span>Libro de ventas</span>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

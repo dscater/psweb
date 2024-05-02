@@ -64,19 +64,19 @@ Route::middleware(['auth'])->group(function () {
     Route::POST('users/configurar/cuenta/update/foto/{user}', [DatosUsuarioController::class, 'cuenta_update_foto'])->name('users.config_update_foto');
 
     // PROVEEDORES
-    Route::get('proveedores', [ProveedorController::class, 'index'])->name('proveedores.index');
+    Route::get('pymes', [ProveedorController::class, 'index'])->name('proveedores.index');
 
-    Route::get('proveedores/create', [ProveedorController::class, 'create'])->name('proveedores.create');
+    Route::get('pymes/create', [ProveedorController::class, 'create'])->name('proveedores.create');
 
-    Route::get('proveedores/show/{proveedor}', [ProveedorController::class, 'show'])->name('proveedores.show');
+    Route::get('pymes/show/{proveedor}', [ProveedorController::class, 'show'])->name('proveedores.show');
 
-    Route::get('proveedores/edit/{proveedor}', [ProveedorController::class, 'edit'])->name('proveedores.edit');
+    Route::get('pymes/edit/{proveedor}', [ProveedorController::class, 'edit'])->name('proveedores.edit');
 
-    Route::post('proveedores/store', [ProveedorController::class, 'store'])->name('proveedores.store');
+    Route::post('pymes/store', [ProveedorController::class, 'store'])->name('proveedores.store');
 
-    Route::put('proveedores/update/{proveedor}', [ProveedorController::class, 'update'])->name('proveedores.update');
+    Route::put('pymes/update/{proveedor}', [ProveedorController::class, 'update'])->name('proveedores.update');
 
-    Route::delete('proveedores/destroy/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
+    Route::delete('pymes/destroy/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 
     // PRODUCTOS
     Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
@@ -186,42 +186,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('productos/tipos_is/update/{tipo}', [TiposIngresoSalidaController::class, 'update'])->name('tipos_is.update');
 
     Route::delete('productos/tipos_is/destroy/{tipo}', [TiposIngresoSalidaController::class, 'destroy'])->name('tipos_is.destroy');
-
-    // DESCUENTOS
-    Route::get('descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');
-
-    Route::get('descuentos/obtieneDescuento', [DescuentoController::class, 'obtieneDescuento'])->name('descuentos.obtieneDescuento');
-
-    Route::get('descuentos/create', [DescuentoController::class, 'create'])->name('descuentos.create');
-
-    Route::get('descuentos/show/{descuento}', [DescuentoController::class, 'show'])->name('descuentos.show');
-
-    Route::get('descuentos/edit/{descuento}', [DescuentoController::class, 'edit'])->name('descuentos.edit');
-
-    Route::post('descuentos/store', [DescuentoController::class, 'store'])->name('descuentos.store');
-
-    Route::put('descuentos/update/{descuento}', [DescuentoController::class, 'update'])->name('descuentos.update');
-
-    Route::delete('descuentos/destroy/{descuento}', [DescuentoController::class, 'destroy'])->name('descuentos.destroy');
-
-    // VENTAS
-    Route::get('productos/ventas', [VentaController::class, 'index'])->name('ventas.index');
-
-    Route::get('productos/ventas/obtieneProducto', [VentaController::class, 'obtenerProducto'])->name('ventas.obtieneProducto');
-
-    Route::get('productos/ventas/factura/{venta}', [VentaController::class, 'factura'])->name('ventas.factura');
-
-    Route::get('productos/ventas/create', [VentaController::class, 'create'])->name('ventas.create');
-
-    Route::get('productos/ventas/show/{venta}', [VentaController::class, 'show'])->name('ventas.show');
-
-    Route::get('productos/ventas/edit/{venta}', [VentaController::class, 'edit'])->name('ventas.edit');
-
-    Route::post('productos/ventas/store', [VentaController::class, 'store'])->name('ventas.store');
-
-    Route::put('productos/ventas/update/{venta}', [VentaController::class, 'update'])->name('ventas.update');
-
-    Route::delete('productos/ventas/destroy/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy');
 
     // REPORTES
     Route::get('reportes', [ReporteController::class, 'index'])->name('reportes.index');
