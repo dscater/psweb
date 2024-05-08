@@ -21,10 +21,10 @@ class ModulosTableSeeder extends Seeder
         ]);
 
         Modulo::create([
-            "titulo" => "Pynes",
-            "url" => "proveedores",
+            "titulo" => "Pymes",
+            "url" => "proveedors",
             "icon" => "local_shipping",
-            "slug" => "proveedores.index",
+            "slug" => "proveedors.index",
         ]);
 
         Modulo::create([
@@ -53,6 +53,26 @@ class ModulosTableSeeder extends Seeder
             "url" => "medidas",
             "icon" => "list",
             "slug" => "medidas.index",
+        ]);
+
+        Modulo::create([
+            "titulo" => "Ingresos",
+            "url" => "ingresos",
+            "icon" => "local_shipping",
+            "slug" => "ingresos.index",
+        ]);
+        Modulo::create([
+            "titulo" => "Salidas",
+            "url" => "salidas",
+            "icon" => "input",
+            "slug" => "salidas.index",
+        ]);
+
+        Modulo::create([
+            "titulo" => "Tipos Ingresos/Salidas",
+            "url" => "tipo_ingreso_salida",
+            "icon" => "assignment_turned_in",
+            "slug" => "tipo_ingreso_salida.index",
         ]);
 
         Modulo::create([

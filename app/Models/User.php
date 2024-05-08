@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'password', 'tipo', 'foto', 'status'
+        'name', 'password', 'txt', 'ultimo', 'tipo', 'foto', 'status'
     ];
 
     /**
@@ -38,6 +39,75 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ["full_name", "full_ci", "c_password"];
+
+    public function getFullNameAttribute()
+    {
+        if ($this->datosUsuario) {
+            return $this->datosUsuario->nom_u . ' ' . $this->datosUsuario->apep_u . ($this->datosUsuario->apem_u ? ' ' . $this->datosUsuario->apem_u : '');
+        }
+
+        return $this->name;
+    }
+
+    public function getFullCiAttribute()
+    {
+        if ($this->datosUsuario) {
+            return $this->datosUsuario->ci_u . ' ' . $this->datosUsuario->ci_exp_u;
+        }
+
+        return "";
+    }
+
+    public function getCPasswordAttribute()
+    {
+        $medicion = 4;
+        $contrasena = $this->txt;
+        // Longitud mínima
+        if (strlen($contrasena) < 8) {
+            $medicion--;
+        }
+
+        // Contiene caracteres especiales
+        if (!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $contrasena)) {
+            $medicion--;
+        }
+
+        // Contiene números
+        if (!preg_match('/[0-9]/', $contrasena)) {
+            $medicion--;
+        }
+
+        // Contiene letras mayúsculas y minúsculas
+        if (!preg_match('/[A-Z]/', $contrasena) || !preg_match('/[a-z]/', $contrasena)) {
+            $medicion--;
+        }
+
+        // Log::debug("===========");
+        // Log::debug($this->id);
+        // Log::debug($medicion);
+        // Log::debug("=*****************");
+
+        $estado = "FUERTE";
+        if ($medicion <= 2) {
+            $estado = "DEBIL";
+        } elseif ($medicion < 4) {
+            $estado = "BUENA";
+        }
+
+        // VALIDAR RENOVACIÓN
+        $finicio = new DateTime($this->ultimo);
+        $ffin = new DateTime(date("Y-m-d"));
+        $diferencia = $finicio->diff($ffin);
+        $mesesDiferencia = ($diferencia->y * 12) + $diferencia->m;
+        if ($mesesDiferencia > 6) {
+            return "RENOVAR";
+        }
+
+        return $estado;
+    }
+
 
     /* =================================================== 
                             RELACIONES
@@ -110,7 +180,10 @@ class User extends Authenticatable
                 4, //Tipos
                 5, //Marcas
                 6, //Medidas
-                7, //Reportes
+                7, //Ingresos
+                8, //Salidas
+                9, //Tipo Ingresos/Salidas
+                10, //Reportes
             ],
             "ALMACENERO" => [
                 2, //Pymes
@@ -118,18 +191,21 @@ class User extends Authenticatable
                 4, //Tipos
                 5, //Marcas
                 6, //Medidas
-                7, //Reportes
+                7, //Ingresos
+                8, //Salidas
+                9, //Tipo Ingresos/Salidas
+                10, //Reportes
             ],
             "SUPERVISOR DE CALIDAD" => [
-                8, //Usuarios y ROles
-                9, //Autentiación Segura
-                10, //Autorización Adecuada
-                11, //Prevención de ataques
-                12, // Auditoría y registros de eventos
-                13, // Alertas y Notificaciones
-                14, // Respaldo y Recuperación
-                15, // Escaneo de vulnerabilidades
-                16, // Capacitación en Seguridad
+                11, //Usuarios y ROles
+                12, //Autentiación Segura
+                13, //Autorización Adecuada
+                14, //Prevención de ataques
+                15, // Auditoría y registros de eventos
+                16, // Alertas y Notificaciones
+                17, // Respaldo y Recuperación
+                18, // Escaneo de vulnerabilidades
+                19, // Capacitación en Seguridad
             ],
         ];
 

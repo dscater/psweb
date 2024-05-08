@@ -72,7 +72,7 @@ max-width: 100%;
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                <a href="{{ route('tipos_is.index') }}" class="btn bg-deep-purple waves-effect"><i class="material-icons">assignment_turned_in</i><span>Tipos ingresos/salidas</span></a>
+                <a href="{{ route('tipo_ingreso_salida.index') }}" class="btn bg-deep-purple waves-effect"><i class="material-icons">assignment_turned_in</i><span>Tipos ingresos/salidas</span></a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('productos.index') }}" class="btn btn-primary">
@@ -80,12 +80,12 @@ max-width: 100%;
                     <span>Ver productos</span>
                 </a>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
+            {{-- <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('ventas.index') }}" class="btn btn-success">
                     <i class="material-icons">local_atm</i>
                     <span>Venta de productos</span>
                 </a>
-            </div>
+            </div> --}}
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('ingresos.create') }}" class="btn btn-info">
                     <i class="material-icons">local_shipping</i>
@@ -108,7 +108,7 @@ max-width: 100%;
                         <small>Los campos con * son obligatorios.</small>
                     </div>
                     <div class="body">
-                        {!! Form::model($tipo,['route'=>['tipos_is.update',$tipo->id],'method'=>'put','files'=>'true','id'=>'form_validation']) !!}
+                        {!! Form::model($tipo,['route'=>['tipo_ingreso_salida.update',$tipo->id],'method'=>'put','files'=>'true','id'=>'form_validation']) !!}
                             @include('tipos_is.forms.form')
                             <button class="btn btn-primary btn-lg waves-effect" type="submit"><i class="material-icons">save</i><span>GUARDAR</span></button>
                     {!! Form::close() !!}

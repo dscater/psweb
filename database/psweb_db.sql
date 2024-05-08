@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-05-2024 a las 22:57:34
+-- Tiempo de generación: 08-05-2024 a las 20:12:14
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `psweb_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `accion_users`
+--
+
+CREATE TABLE `accion_users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `modulo_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `crear` int NOT NULL DEFAULT '0',
+  `editar` int NOT NULL DEFAULT '0',
+  `eliminar` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -83,7 +100,8 @@ CREATE TABLE `datos_usuarios` (
 INSERT INTO `datos_usuarios` (`id`, `nom_u`, `apep_u`, `apem_u`, `ci_u`, `ci_exp_u`, `fecha_nac_u`, `genero_u`, `dir_dpto_u`, `dir_ciudad_u`, `dir_zv_u`, `dir_ac_u`, `dir_num_u`, `fono_u`, `cel_u`, `email_u`, `foto_u`, `fecha_reg`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 'CARLOS', 'QUISPE', 'QUISPE', '12345678', 'LP', '1985-03-22', 'M', 'LA PAZ', 'LA PAZ', 'ZONA LOS OLIVOS', 'CALLE LOS HEROES', '15', '231567', '78945612', NULL, '155144470011001CARLOS.jpg', '2019-04-08', 2, '2019-04-12 17:30:26', '2019-04-12 17:30:26'),
 (2, 'JHONNY', 'CARVAJAL', 'MAMANI', '12345678', 'LP', '1990-06-22', 'M', 'LA PAZ', 'LA PAZ', 'LAS LOMAS', 'CALLE BOLIVAR', '23', '232367', '78994612', NULL, '155144470121002JHONNY.jpg', '2019-04-08', 3, '2019-04-12 17:30:26', '2019-04-12 17:30:26'),
-(3, 'PATRICIA', 'CONDORI', 'RAMOS', '12345678', 'LP', '1994-11-04', 'F', 'LA PAZ', 'LA PAZ', 'ZONA LOS PEDREGALES', 'CALLE 5', '155', '2315567', '78946912', NULL, '1551444702331003PATRICIA.jpg', '2019-04-08', 4, '2019-04-12 17:30:26', '2019-04-12 17:30:26');
+(3, 'PATRICIA', 'CONDORI', 'RAMOS', '12345678', 'LP', '1994-11-04', 'F', 'LA PAZ', 'LA PAZ', 'ZONA LOS PEDREGALES', 'CALLE 5', '155', '2315567', '78946912', '', '1551444702331003PATRICIA.jpg', '2019-04-08', 4, '2019-04-12 17:30:26', '2024-05-08 15:31:26'),
+(4, 'JUAN', 'PERES', 'MAMANI', '4444', 'LP', '2024-05-08', 'F', 'LA PAZ', 'LA PAZ', 'LOS OLIVOS', 'CALLE 3', '32', '', '7676766767', '', '31002JUAN1715182939.jpg', '2024-05-08', 5, '2024-05-08 15:42:19', '2024-05-08 15:42:19');
 
 -- --------------------------------------------------------
 
@@ -123,6 +141,26 @@ CREATE TABLE `empresas` (
 
 INSERT INTO `empresas` (`id`, `cod`, `nit`, `nro_aut`, `nro_emp`, `name`, `alias`, `pais`, `dpto`, `ciudad`, `zona`, `calle`, `nro`, `email`, `fono`, `cel`, `fax`, `casilla`, `web`, `logo`, `actividad_eco`, `created_at`, `updated_at`) VALUES
 (1, 'EMP01', '1231564564', '2315674898', '6666544555', 'INSTITUCION PRUEBA', 'I.P.', 'BOLIVIA', 'LA PAZ', 'LA PAZ', 'LOS OLIVOS', 'LOS HEROES', '233', '', '2316489', '68465315', '', '', '', 'logo.jpg', 'VENTA DE PRODUCTOS POR MAYOR Y MENOR', '2019-04-12 17:30:28', '2019-04-12 17:30:28');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial_accions`
+--
+
+CREATE TABLE `historial_accions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `accion` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `datos_original` text COLLATE utf8mb4_unicode_ci,
+  `datos_nuevo` text COLLATE utf8mb4_unicode_ci,
+  `modulo` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -256,7 +294,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (222, '2019_04_08_154302_create_salidas_table', 1),
 (223, '2019_04_11_133125_create_producto_rfids_table', 1),
 (224, '2024_05_02_181306_create_modulos_table', 2),
-(225, '2024_05_02_181317_create_user_modulos_table', 3);
+(225, '2024_05_02_181317_create_user_modulos_table', 3),
+(226, '2024_05_08_132815_create_accion_users_table', 4),
+(227, '2024_05_08_132825_create_notificacion_users_table', 5),
+(228, '2024_05_08_133006_create_historial_accions_table', 6);
 
 -- --------------------------------------------------------
 
@@ -279,22 +320,41 @@ CREATE TABLE `modulos` (
 --
 
 INSERT INTO `modulos` (`id`, `titulo`, `url`, `icon`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Usuarios', 'users', 'people', 'users.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(2, 'Pynes', 'proveedores', 'local_shipping', 'proveedores.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(3, 'Productos', 'productos', 'local_offer', 'productos.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(4, 'Tipos', 'tipos', 'view_list', 'tipos.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(5, 'Marcas', 'marcas', 'bookmark', 'marcas.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(6, 'Medidas', 'medidas', 'list', 'medidas.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(7, 'Reportes', 'reportes', 'assessment', 'reportes.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(8, 'Usuarios y Roles', 'usuarios_roles', 'view_list', 'usuarios_roles.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(9, 'Autentiación Segura', 'autenticacion_seguras', 'view_list', 'autenticacion_seguras.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(10, 'Autorización Adecuada', 'autenticacion_adecuadas', 'view_list', 'autenticacion_adecuadas.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(11, 'Prevención de ataques', 'prevencion_ataques', 'view_list', 'prevencion_ataques.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(12, 'Auditoría y registros de eventos', 'auditoria_eventos', 'view_list', 'auditoria_eventos.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(13, 'Alertas y Notificaciones', 'alertas_notificacions', 'view_list', 'alertas_notificacions.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(14, 'Respaldo y Recuperación', 'respaldo_recuperacion', 'view_list', 'respaldo_recuperacion.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(15, 'Escaneo de vulnerabilidades', 'escaneo_vulnerabilidads', 'view_list', 'escaneo_vulnerabilidads.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34'),
-(16, 'Capacitación en Seguridad', 'capacitacion_seguridads', 'view_list', 'capacitacion_seguridads.index', '2024-05-02 22:40:34', '2024-05-02 22:40:34');
+(1, 'Usuarios', 'users', 'people', 'users.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(2, 'Pymes', 'proveedors', 'local_shipping', 'proveedors.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(3, 'Productos', 'productos', 'local_offer', 'productos.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(4, 'Tipos', 'tipos', 'view_list', 'tipos.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(5, 'Marcas', 'marcas', 'bookmark', 'marcas.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(6, 'Medidas', 'medidas', 'list', 'medidas.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(7, 'Ingresos', 'ingresos', 'local_shipping', 'ingresos.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(8, 'Salidas', 'salidas', 'input', 'salidas.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(9, 'Tipos Ingresos/Salidas', 'tipo_ingreso_salida', 'assignment_turned_in', 'tipo_ingreso_salida.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(10, 'Reportes', 'reportes', 'assessment', 'reportes.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(11, 'Usuarios y Roles', 'usuarios_roles', 'view_list', 'usuarios_roles.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(12, 'Autentiación Segura', 'autenticacion_seguras', 'view_list', 'autenticacion_seguras.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(13, 'Autorización Adecuada', 'autenticacion_adecuadas', 'view_list', 'autenticacion_adecuadas.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(14, 'Prevención de ataques', 'prevencion_ataques', 'view_list', 'prevencion_ataques.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(15, 'Auditoría y registros de eventos', 'auditoria_eventos', 'view_list', 'auditoria_eventos.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(16, 'Alertas y Notificaciones', 'alertas_notificacions', 'view_list', 'alertas_notificacions.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(17, 'Respaldo y Recuperación', 'respaldo_recuperacion', 'view_list', 'respaldo_recuperacion.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(18, 'Escaneo de vulnerabilidades', 'escaneo_vulnerabilidads', 'view_list', 'escaneo_vulnerabilidads.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01'),
+(19, 'Capacitación en Seguridad', 'capacitacion_seguridads', 'view_list', 'capacitacion_seguridads.index', '2024-05-08 18:41:01', '2024-05-08 18:41:01');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificacion_users`
+--
+
+CREATE TABLE `notificacion_users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -534,6 +594,8 @@ CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `txt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ultimo` date DEFAULT NULL,
   `tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int NOT NULL,
@@ -545,11 +607,12 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `tipo`, `foto`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$uJHwzvmxIwqijYB5nTlVuOO8npHnO9JIs7keueraJ1NcIw1wLXMkW', 'ADMINISTRADOR', 'user_default.png', 1, '2019-04-12 17:30:25', '2019-04-12 17:30:25'),
-(2, '11001', '$2y$10$RvsZ1161cm235JsyvVedyeboTkUMPdTEidIOZQQKDvqiu/NIGB5ni', 'ADMINISTRADOR', '11001CARLOS1555519819.jpg', 1, '2019-04-12 17:30:25', '2019-04-17 16:50:19'),
-(3, '21002', '$2y$10$Z08AlHN8kMwOG.sxwUoB3eivgnVBO8Rb671.quyK8zqBwHb7Dn4Dm', 'ALMACENERO', 'user_default.png', 1, '2019-04-12 17:30:26', '2019-04-17 16:56:20'),
-(4, '31003', '$2y$10$3LGSuYp2C.61QafN1f8/I.3h8huK/21HNEWYTz8BYtpfhuCpPObmS', 'CAJA', '31003PATRICIA1555520091.png', 1, '2019-04-12 17:30:26', '2019-04-17 16:54:51');
+INSERT INTO `users` (`id`, `name`, `password`, `txt`, `ultimo`, `tipo`, `foto`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '$2y$10$uJHwzvmxIwqijYB5nTlVuOO8npHnO9JIs7keueraJ1NcIw1wLXMkW', NULL, NULL, 'ADMINISTRADOR', 'user_default.png', 1, '2019-04-12 17:30:25', '2019-04-12 17:30:25'),
+(2, '11001', '$2y$10$RvsZ1161cm235JsyvVedyeboTkUMPdTEidIOZQQKDvqiu/NIGB5ni', '12345678', '2019-04-12', 'ADMINISTRADOR', '11001CARLOS1555519819.jpg', 1, '2019-04-12 17:30:25', '2019-04-17 16:50:19'),
+(3, '21002', '$2y$10$Z08AlHN8kMwOG.sxwUoB3eivgnVBO8Rb671.quyK8zqBwHb7Dn4Dm', '12345678', '2019-04-12', 'ALMACENERO', 'user_default.png', 1, '2019-04-12 17:30:26', '2019-04-17 16:56:20'),
+(4, '31001', '$2y$10$3LGSuYp2C.61QafN1f8/I.3h8huK/21HNEWYTz8BYtpfhuCpPObmS', '12345678', '2019-04-12', 'SUPERVISOR DE CALIDAD', '31003PATRICIA1555520091.png', 1, '2019-04-12 17:30:26', '2024-05-08 15:31:56'),
+(5, '31002', '$2y$12$tdOqkK0rzKY06SFAmPMusO.HNKoEg5MKTB7dn987Y1sfvPAMAyz5u', '4444', '2024-05-08', 'SUPERVISOR DE CALIDAD', 'user_default.png', 1, '2024-05-08 15:42:19', '2024-05-08 18:49:15');
 
 -- --------------------------------------------------------
 
@@ -574,17 +637,54 @@ CREATE TABLE `user_modulos` (
 --
 
 INSERT INTO `user_modulos` (`id`, `user_id`, `modulo_id`, `listar`, `crear`, `editar`, `eliminar`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54'),
-(2, 1, 2, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54'),
-(3, 1, 3, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54'),
-(4, 1, 4, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54'),
-(5, 1, 5, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54'),
-(6, 1, 6, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54'),
-(7, 1, 7, 1, 1, 1, 1, '2024-05-02 22:45:54', '2024-05-02 22:45:54');
+(1, 5, 11, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(2, 5, 12, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(3, 5, 13, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(4, 5, 14, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(5, 5, 15, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(6, 5, 16, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(7, 5, 17, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(8, 5, 18, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(9, 5, 19, 1, 1, 1, 1, '2024-05-08 18:44:56', '2024-05-08 18:44:56'),
+(10, 2, 1, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(11, 2, 2, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(12, 2, 3, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(13, 2, 4, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(14, 2, 5, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(15, 2, 6, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(16, 2, 7, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(17, 2, 8, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(18, 2, 9, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(19, 2, 10, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(20, 3, 2, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(21, 3, 3, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(22, 3, 4, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(23, 3, 5, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(24, 3, 6, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(25, 3, 7, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(26, 3, 8, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(27, 3, 9, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(28, 3, 10, 1, 1, 1, 1, '2024-05-08 18:46:00', '2024-05-08 18:46:00'),
+(29, 1, 1, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(30, 1, 2, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(31, 1, 3, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(32, 1, 4, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(33, 1, 5, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(34, 1, 6, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(35, 1, 7, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(36, 1, 8, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(37, 1, 9, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57'),
+(38, 1, 10, 1, 1, 1, 1, '2024-05-08 18:52:57', '2024-05-08 18:52:57');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `accion_users`
+--
+ALTER TABLE `accion_users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -604,6 +704,12 @@ ALTER TABLE `datos_usuarios`
 -- Indices de la tabla `empresas`
 --
 ALTER TABLE `empresas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `historial_accions`
+--
+ALTER TABLE `historial_accions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -641,6 +747,12 @@ ALTER TABLE `migrations`
 -- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `notificacion_users`
+--
+ALTER TABLE `notificacion_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -722,6 +834,12 @@ ALTER TABLE `user_modulos`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `accion_users`
+--
+ALTER TABLE `accion_users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
@@ -731,13 +849,19 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `datos_usuarios`
 --
 ALTER TABLE `datos_usuarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
 --
 ALTER TABLE `empresas`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_accions`
+--
+ALTER TABLE `historial_accions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
@@ -761,13 +885,19 @@ ALTER TABLE `medidas`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `notificacion_users`
+--
+ALTER TABLE `notificacion_users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -815,13 +945,13 @@ ALTER TABLE `tipo_ingreso_salida`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `user_modulos`
 --
 ALTER TABLE `user_modulos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Restricciones para tablas volcadas

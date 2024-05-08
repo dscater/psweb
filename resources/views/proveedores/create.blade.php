@@ -84,8 +84,8 @@ max-width: 100%;
                         <small>Los campos con * son obligatorios.</small>
                     </div>
                     <div class="body">
-                        {!! Form::open(['route'=>'proveedores.store','method'=>'post','files'=>'true','id'=>'form_validation']) !!}
-                            @include('proveedores.forms.form')
+                        {!! Form::open(['route'=>'proveedors.store','method'=>'post','files'=>'true','id'=>'form_validation']) !!}
+                            @include('proveedors.forms.form')
                             <button class="btn btn-primary btn-lg waves-effect" type="submit"><i class="material-icons">save</i><span>GUARDAR</span></button>
                     {!! Form::close() !!}
                 </div>

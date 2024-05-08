@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                <a href="{{ route('tipos_is.create') }}" class="btn bg-deep-purple waves-effect"><i class="material-icons">add</i><span>Nuevo tipo</span></a>
+                <a href="{{ route('tipo_ingreso_salida.create') }}" class="btn bg-deep-purple waves-effect"><i class="material-icons">add</i><span>Nuevo tipo</span></a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('productos.index') }}" class="btn btn-primary">
@@ -55,7 +55,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <input type="text" name="url_lista" id="url_lista" value="{{ route('tipos_is.index') }}" hidden>
+                        <input type="text" name="url_lista" id="url_lista" value="{{ route('tipo_ingreso_salida.index') }}" hidden>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
@@ -73,17 +73,17 @@
                                     </tr>
                                 </tfoot>
                                 <tbody id="datos_lista">
-                                @foreach($tipos_is as $key => $tipo)
+                                @foreach($tipo_ingreso_salida as $key => $tipo)
                                 <tr>
                                     <td>{{ $tipo->nom }}</td>
                                     <td>{{ $tipo->descripcion }}</td>
                                     <td>
-                                        <input type="text" name="eliminar" class="url_eliminar" value="{{ route('tipos_is.destroy',$tipo->id) }}" hidden>
+                                        <input type="text" name="eliminar" class="url_eliminar" value="{{ route('tipo_ingreso_salida.destroy',$tipo->id) }}" hidden>
                                         <a href="#" title="Eliminar" class="eliminar"><i class="material-icons eliminar">delete</i>
                                         </a>
-                                        <a href="{{ route('tipos_is.edit',$tipo->id) }}" title="Editar"><i class="material-icons editar">edit</i>
+                                        <a href="{{ route('tipo_ingreso_salida.edit',$tipo->id) }}" title="Editar"><i class="material-icons editar">edit</i>
                                         </a>
-                                        {{-- <a href="{{ route('tipos_is.show',$tipo->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
+                                        {{-- <a href="{{ route('tipo_ingreso_salida.show',$tipo->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
                                     </td>
                                 </tr>
                                 @endforeach

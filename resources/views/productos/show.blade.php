@@ -77,14 +77,14 @@ max-width: 100%;
                     <span>Ver productos</span>
                 </a>
             </div>
-            @if(Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'CAJA')
+            {{-- @if(Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'CAJA')
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('ventas.index') }}" class="btn btn-success">
                     <i class="material-icons">local_atm</i>
                     <span>Venta de productos</span>
                 </a>
             </div>
-            @endif
+            @endif --}}
             @if(Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO')
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('ingresos.create') }}" class="btn btn-info">
@@ -99,7 +99,7 @@ max-width: 100%;
                 </a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                <a href="{{ route('tipos_is.index') }}" class="btn bg-deep-purple waves-effect">
+                <a href="{{ route('tipo_ingreso_salida.index') }}" class="btn bg-deep-purple waves-effect">
                     <i class="material-icons">assignment_turned_in</i>
                     <span>Tipos ingresos/salidas</span>
                 </a>

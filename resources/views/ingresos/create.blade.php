@@ -102,7 +102,7 @@ max-width: 100%;
                 </a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                <a href="{{ route('tipos_is.index') }}" class="btn bg-deep-purple waves-effect">
+                <a href="{{ route('tipo_ingreso_salida.index') }}" class="btn bg-deep-purple waves-effect">
                     <i class="material-icons">assignment_turned_in</i>
                     <span>Tipos ingresos/salidas</span>
                 </a>

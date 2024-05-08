@@ -24,7 +24,7 @@
     <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                    <a href="{{ route('proveedores.create') }}" class="btn btn-primary"><i class="material-icons">local_shipping</i><span>Nuevo pyme</span></a>
+                    <a href="{{ route('proveedors.create') }}" class="btn btn-primary"><i class="material-icons">local_shipping</i><span>Nuevo pyme</span></a>
                 </div>
             </div>
         <!-- Basic Examples -->
@@ -37,7 +37,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <input type="text" name="url_lista" id="url_lista" value="{{ route('proveedores.index') }}" hidden>
+                        <input type="text" name="url_lista" id="url_lista" value="{{ route('proveedors.index') }}" hidden>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
@@ -69,12 +69,12 @@
                                     <td>{{ $proveedor->nom_rep_p }} {{ $proveedor->apep_rep_p }} {{ $proveedor->apem_rep_p }}</td>
                                     <td>{{ $proveedor->cel_rep_p }}</td>
                                     <td>
-                                        <input type="text" name="eliminar" class="url_eliminar" value="{{ route('proveedores.destroy',$proveedor->id) }}" hidden>
+                                        <input type="text" name="eliminar" class="url_eliminar" value="{{ route('proveedors.destroy',$proveedor->id) }}" hidden>
                                         <a href="#" title="Eliminar" class="eliminar"><i class="material-icons eliminar">delete</i>
                                         </a>
-                                        <a href="{{ route('proveedores.edit',$proveedor->id) }}" title="Editar"><i class="material-icons editar">edit</i>
+                                        <a href="{{ route('proveedors.edit',$proveedor->id) }}" title="Editar"><i class="material-icons editar">edit</i>
                                         </a>
-                                        {{-- <a href="{{ route('proveedores.show',$proveedor->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
+                                        {{-- <a href="{{ route('proveedors.show',$proveedor->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
                                     </td>
                                 </tr>
                                 @endforeach

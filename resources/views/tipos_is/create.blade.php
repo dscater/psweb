@@ -72,7 +72,7 @@ max-width: 100%;
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                <a href="{{ route('tipos_is.index') }}" class="btn bg-deep-purple waves-effect"><i class="material-icons">assignment_turned_in</i><span>Tipos ingresos/salidas</span></a>
+                <a href="{{ route('tipo_ingreso_salida.index') }}" class="btn bg-deep-purple waves-effect"><i class="material-icons">assignment_turned_in</i><span>Tipos ingresos/salidas</span></a>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
                 <a href="{{ route('productos.index') }}" class="btn btn-primary">
@@ -102,8 +102,8 @@ max-width: 100%;
                         <small>Los campos con * son obligatorios.</small>
                     </div>
                     <div class="body">
-                        {!! Form::open(['route'=>'tipos_is.store','method'=>'post','files'=>'true','id'=>'form_validation']) !!}
-                            @include('tipos_is.forms.form')
+                        {!! Form::open(['route'=>'tipo_ingreso_salida.store','method'=>'post','files'=>'true','id'=>'form_validation']) !!}
+                            @include('tipo_ingreso_salida.forms.form')
                             <button class="btn btn-primary btn-lg waves-effect" type="submit"><i class="material-icons">save</i><span>GUARDAR</span></button>
                     {!! Form::close() !!}
                 </div>

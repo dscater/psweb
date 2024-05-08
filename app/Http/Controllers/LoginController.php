@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $res = Auth::attempt(["name" => $request->name, "password" => $request->password]);
+        $res = Auth::attempt(["name" => $request->name, "password" => $request->password, "status" => 1]);
 
         if ($res) {
             return redirect()->route("home");

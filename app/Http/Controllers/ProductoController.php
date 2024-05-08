@@ -14,6 +14,7 @@ use App\Models\Marca;
 use App\Models\Medida;
 use App\Models\Proveedor;
 use App\Models\Stock;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -92,30 +93,49 @@ class ProductoController extends Controller
 
     public function store(ProductoStoreRequest $request)
     {
-        $producto = new Producto(array_map('mb_strtoupper', $request->except('imagen')));
-        //SUBIR IMAGEN
-        $imagen = $request->file('imagen');
-        $extension = "." . $imagen->getClientOriginalExtension();
-        $nom_imagen = str_replace(' ', '_', $producto->cod) . str_replace(' ', '_', $producto->nom) . time() . $extension;
-        $imagen->move(public_path() . "/imgs/productos/", $nom_imagen);
-        // ASIGNAR imagen
-        $producto->imagen = $nom_imagen;
-        $producto->fecha_reg = date('Y-m-d');
-        $producto->user_id = Auth::user()->id;
-        $producto->status = 1;
-        $producto->save();
+        DB::beginTransaction();
+        try {
+            $producto = new Producto(array_map('mb_strtoupper', $request->except('imagen')));
+            //SUBIR IMAGEN
+            $imagen = $request->file('imagen');
+            $extension = "." . $imagen->getClientOriginalExtension();
+            $nom_imagen = str_replace(' ', '_', $producto->cod) . str_replace(' ', '_', $producto->nom) . time() . $extension;
+            $imagen->move(public_path() . "/imgs/productos/", $nom_imagen);
+            // ASIGNAR imagen
+            $producto->imagen = $nom_imagen;
+            $producto->fecha_reg = date('Y-m-d');
+            $producto->user_id = Auth::user()->id;
+            $producto->status = 1;
+            $producto->save();
 
-        //INICIALIZANDO STOCK
-        $stock = new Stock();
-        $stock->cant_ingresos = 0;
-        $stock->cant_actual = 0;
-        $stock->cant_salidas = 0;
-        $stock->cant_min = $request->cant_min;
-        $stock->fecha_movimiento = date('Y-m-d');
-        $stock->fecha_reg = date('Y-m-d');
-        $stock->producto_id = $producto->id;
-        $stock->save();
-        return redirect()->route('productos.edit', $producto->id)->with('success', 'success');
+            //INICIALIZANDO STOCK
+            $stock = new Stock();
+            $stock->cant_ingresos = 0;
+            $stock->cant_actual = 0;
+            $stock->cant_salidas = 0;
+            $stock->cant_min = $request->cant_min;
+            $stock->fecha_movimiento = date('Y-m-d');
+            $stock->fecha_reg = date('Y-m-d');
+            $stock->producto_id = $producto->id;
+            $stock->save();
+
+            $datos_original = HistorialAccion::getDetalleRegistro($producto, "productos");
+            HistorialAccion::create([
+                'user_id' => Auth::user()->id,
+                'accion' => 'CREACIÓN',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UN PRODUCTO',
+                'datos_original' => $datos_original,
+                'modulo' => 'PRODUCTOS',
+                'fecha' => date('Y-m-d'),
+                'hora' => date('H:i:s')
+            ]);
+
+            DB::commit();
+            return redirect()->route('productos.edit', $producto->id)->with('success', 'success');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'error');
+        }
     }
 
     public function edit(Producto $producto)
@@ -151,22 +171,43 @@ class ProductoController extends Controller
 
     public function update(ProductoUpdateRequest $request, Producto $producto)
     {
-        $producto->update(array_map('mb_strtoupper', $request->except('imagen')));
-        if ($request->hasFile('imagen')) {
-            $imagen_antigua = $producto->imagen;
-            \File::delete(public_path() . "/imgs/productos/" . $imagen_antigua);
-            //SUBIR IMAGEN
-            $imagen = $request->file('imagen');
-            $extension = "." . $imagen->getClientOriginalExtension();
-            $nom_imagen = str_replace(' ', '_', $producto->cod) . str_replace(' ', '_', $producto->nom) . time() . $extension;
-            $imagen->move(public_path() . "/imgs/productos/", $nom_imagen);
-            // ASIGNAR LOGO
-            $producto->imagen = $nom_imagen;
-            $producto->save();
+        DB::beginTransaction();
+        try {
+            $datos_original = HistorialAccion::getDetalleRegistro($producto, "productos");
+            $producto->update(array_map('mb_strtoupper', $request->except('imagen')));
+            if ($request->hasFile('imagen')) {
+                $imagen_antigua = $producto->imagen;
+                \File::delete(public_path() . "/imgs/productos/" . $imagen_antigua);
+                //SUBIR IMAGEN
+                $imagen = $request->file('imagen');
+                $extension = "." . $imagen->getClientOriginalExtension();
+                $nom_imagen = str_replace(' ', '_', $producto->cod) . str_replace(' ', '_', $producto->nom) . time() . $extension;
+                $imagen->move(public_path() . "/imgs/productos/", $nom_imagen);
+                // ASIGNAR LOGO
+                $producto->imagen = $nom_imagen;
+                $producto->save();
+            }
+            $producto->stock->cant_min = $request->cant_min;
+            $producto->stock->save();
+
+            $datos_nuevo = HistorialAccion::getDetalleRegistro($producto, "productos");
+            HistorialAccion::create([
+                'user_id' => Auth::user()->id,
+                'accion' => 'MODIFICACIÓN',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' MODIFICÓ UN PRODUCTO',
+                'datos_original' => $datos_original,
+                'datos_nuevo' => $datos_nuevo,
+                'modulo' => 'PRODUCTOS',
+                'fecha' => date('Y-m-d'),
+                'hora' => date('H:i:s')
+            ]);
+
+            DB::commit();
+            return redirect()->route('productos.edit', $producto->id)->with('success', 'success');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'error');
         }
-        $producto->stock->cant_min = $request->cant_min;
-        $producto->stock->save();
-        return redirect()->route('productos.edit', $producto->id)->with('success', 'success');
     }
 
     public function show(Producto $producto)
@@ -180,10 +221,31 @@ class ProductoController extends Controller
 
     public function destroy(Producto $producto)
     {
-        $producto->status = 0;
-        $producto->save();
-        return response()->JSON([
-            'msg' => 'success',
-        ]);
+        DB::beginTransaction();
+        try {
+            $datos_original = HistorialAccion::getDetalleRegistro($producto, "productos");
+            $producto->status = 0;
+            $producto->save();
+
+            $datos_nuevo = HistorialAccion::getDetalleRegistro($producto, "productos");
+            HistorialAccion::create([
+                'user_id' => Auth::user()->id,
+                'accion' => 'MODIFICACIÓN',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' ELIMINÓ UN PRODUCTO',
+                'datos_original' => $datos_original,
+                'datos_nuevo' => $datos_nuevo,
+                'modulo' => 'PRODUCTOS',
+                'fecha' => date('Y-m-d'),
+                'hora' => date('H:i:s')
+            ]);
+            return response()->JSON([
+                'msg' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->JSON([
+                'msg' => 'error',
+            ]);
+        }
     }
 }
