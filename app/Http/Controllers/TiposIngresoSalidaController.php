@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccionUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,6 +11,7 @@ use App\Models\Producto;
 use App\Models\Ingreso;
 use App\Models\Salida;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use Illuminate\Support\Facades\DB;
 
 class TiposIngresoSalidaController extends Controller
@@ -51,6 +53,10 @@ class TiposIngresoSalidaController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+
+            // registrar accion usuario
+            AccionUser::registrarAccion("tipo_ingreso_salida", "crear");
+
             DB::commit();
             return redirect()->route('tipo_ingreso_salida.edit', $tipo->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -85,6 +91,8 @@ class TiposIngresoSalidaController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("tipo_ingreso_salida", "editar");
             DB::commit();
             return redirect()->route('tipo_ingreso_salida.edit', $tipo->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -117,6 +125,8 @@ class TiposIngresoSalidaController extends Controller
                         'fecha' => date('Y-m-d'),
                         'hora' => date('H:i:s')
                     ]);
+                    // registrar accion usuario
+                    AccionUser::registrarAccion("tipo_ingreso_salida", "eliminar");
                     DB::commit();
                     return response()->JSON([
                         'msg' => 'cambiar status',

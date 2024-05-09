@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccionUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Proveedor;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
@@ -62,6 +64,8 @@ class ProveedorController extends Controller
                 'hora' => date('H:i:s')
             ]);
 
+            // registrar accion usuario
+            AccionUser::registrarAccion("proveedors", "crear");
             DB::commit();
             return redirect()->route('proveedores.edit', $proveedor->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -109,7 +113,8 @@ class ProveedorController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
-
+            // registrar accion usuario
+            AccionUser::registrarAccion("proveedors", "editar");
             DB::commit();
             return redirect()->route('proveedores.edit', $proveedor->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -141,7 +146,8 @@ class ProveedorController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
-
+            // registrar accion usuario
+            AccionUser::registrarAccion("proveedors", "eliminar");
             DB::commit();
             return response()->JSON([
                 'msg' => 'success',

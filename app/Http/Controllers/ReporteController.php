@@ -11,7 +11,6 @@ use App\Models\Tipo;
 use App\Models\Producto;
 use App\Models\Stock;
 use App\Models\Ingreso;
-use App\Models\Venta;
 use App\Models\Salida;
 use App\Models\Reporte;
 
@@ -139,27 +138,16 @@ class ReporteController extends Controller
         return $pdf->stream('MovimientoProductos.pdf');
     }
 
-    public function libroCompras(Request $request)
-    {
-        $empresa = Empresa::first();
-        $fecha_ini = $request->fecha_ini;
-        $fecha_fin = $request->fecha_fin;
-        $ingresos = Ingreso::libro_compras($fecha_ini, $fecha_fin);
+    // public function libroCompras(Request $request)
+    // {
+    //     $empresa = Empresa::first();
+    //     $fecha_ini = $request->fecha_ini;
+    //     $fecha_fin = $request->fecha_fin;
+    //     $ingresos = Ingreso::libro_compras($fecha_ini, $fecha_fin);
 
-        $anio_fiscal = explode('-', $fecha_ini);
-        $pdf = PDF::loadView('reportes.r_libroCompras', compact('ingresos', 'empresa', 'anio_fiscal'))->setPaper('letter', 'portrait');
-        return $pdf->stream('LibroCompras.pdf');
-    }
+    //     $anio_fiscal = explode('-', $fecha_ini);
+    //     $pdf = PDF::loadView('reportes.r_libroCompras', compact('ingresos', 'empresa', 'anio_fiscal'))->setPaper('letter', 'portrait');
+    //     return $pdf->stream('LibroCompras.pdf');
+    // }
 
-    public function libroVentas(Request $request)
-    {
-        $empresa = Empresa::first();
-        $fecha_ini = $request->fecha_ini;
-        $fecha_fin = $request->fecha_fin;
-        $ventas = Venta::whereBetween('fecha_venta', [$fecha_ini, $fecha_fin])->get();
-
-        $anio_fiscal = explode('-', $fecha_ini);
-        $pdf = PDF::loadView('reportes.r_libroVentas', compact('ventas', 'empresa', 'anio_fiscal'))->setPaper('letter', 'portrait');
-        return $pdf->stream('LibroVentas.pdf');
-    }
 }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductoUpdateRequest;
 use App\Http\Requests\ProductoStoreRequest;
+use App\Models\AccionUser;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Producto;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use App\Models\Tipo;
 use App\Models\Marca;
 use App\Models\Medida;
@@ -129,7 +131,8 @@ class ProductoController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
-
+            // registrar accion usuario
+            AccionUser::registrarAccion("productos", "crear");
             DB::commit();
             return redirect()->route('productos.edit', $producto->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -202,6 +205,8 @@ class ProductoController extends Controller
                 'hora' => date('H:i:s')
             ]);
 
+            // registrar accion usuario
+            AccionUser::registrarAccion("productos", "editar");
             DB::commit();
             return redirect()->route('productos.edit', $producto->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -238,6 +243,10 @@ class ProductoController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+
+            // registrar accion usuario
+            AccionUser::registrarAccion("productos", "eliminar");
+            DB::commit();
             return response()->JSON([
                 'msg' => 'success',
             ]);

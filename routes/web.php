@@ -42,7 +42,9 @@ Route::get('/', function () {
     return view('auth.login', compact('empresa'));
 })->name("inicio_app");
 
-Route::post("/login", [LoginController::class, 'login'])->name("login");
+Route::middleware(['security.login', 'throttle.login'])->group(function () {
+    Route::post("/login", [LoginController::class, 'login'])->name("login");
+});
 Route::post("/logout", [LoginController::class, 'logout'])->name("logout");
 
 

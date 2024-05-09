@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NotificacionUser;
 use App\Models\User;
 use App\Models\UserModulo;
 use Illuminate\Http\Request;
@@ -38,6 +39,24 @@ class UserModuloController extends Controller
             $user_modulo = UserModulo::find($user_modulo_id);
             $user_modulo[$col] = $valor;
             $user_modulo->save();
+
+            // REGISTRAR NOTIFICACION
+            $descripcion = "";
+            $permiso = "CREACIÓN";
+            if ($col == 'editar') {
+                $permiso = "EDICIÓN";
+            }
+            if ($col == 'eliminar') {
+                $permiso = "ELIMINACIÓN";
+            }
+
+            if ($valor == 0) {
+                $descripcion = "POR SEGURIDAD DEL SISTEMA SE LE HA DESHABILITADO EL PERMISO DE " . $permiso . " DE " . mb_strtoupper($user_modulo->modulo->titulo);
+            } else {
+                $descripcion = "POR SEGURIDAD DEL SISTEMA SE LE HA HABILITADO EL PERMISO DE " . $permiso . " DE " . mb_strtoupper($user_modulo->modulo->titulo);
+            }
+
+            NotificacionUser::registraNotificacion($user_modulo->user, $descripcion);
 
             DB::commit();
             return response()->JSON([

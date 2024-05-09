@@ -29,7 +29,6 @@ class Modulo extends Model
 
             // registrar los modulos del usuario
             $modulos_tipo = User::getModulosByTipo($user->tipo);
-            Log::debug($modulos_tipo);
             foreach ($modulos_tipo as $value) {
                 UserModulo::create([
                     "user_id" => $user->id,

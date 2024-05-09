@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccionUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,6 +11,7 @@ use App\Models\Producto;
 use App\Models\TiposIngresoSalida;
 use App\Models\ProductoRfid;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use Illuminate\Support\Facades\DB;
 
 class SalidaController extends Controller
@@ -119,6 +121,9 @@ class SalidaController extends Controller
                             'fecha' => date('Y-m-d'),
                             'hora' => date('H:i:s')
                         ]);
+
+                        // registrar accion usuario
+                        AccionUser::registrarAccion("salidas", "crear");
 
                         DB::commit();
                         return response()->JSON([

@@ -104,13 +104,6 @@ class ModulosTableSeeder extends Seeder
         ]);
 
         Modulo::create([
-            "titulo" => "Prevención de ataques",
-            "url" => "prevencion_ataques",
-            "icon" => "view_list",
-            "slug" => "prevencion_ataques.index",
-        ]);
-
-        Modulo::create([
             "titulo" => "Auditoría y registros de eventos",
             "url" => "auditoria_eventos",
             "icon" => "view_list",

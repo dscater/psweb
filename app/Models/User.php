@@ -152,6 +152,11 @@ class User extends Authenticatable
         return $this->hasMany(UserModulo::class, 'user_id');
     }
 
+    public function accion_users()
+    {
+        return $this->hasMany(AccionUser::class, 'user_id');
+    }
+
     public function verificaPermiso($url, $accion)
     {
         if (Auth::check()) {
@@ -200,12 +205,12 @@ class User extends Authenticatable
                 11, //Usuarios y ROles
                 12, //Autentiación Segura
                 13, //Autorización Adecuada
-                14, //Prevención de ataques
-                15, // Auditoría y registros de eventos
-                16, // Alertas y Notificaciones
-                17, // Respaldo y Recuperación
-                18, // Escaneo de vulnerabilidades
-                19, // Capacitación en Seguridad
+                // 14, //Prevención de ataques
+                14, // Auditoría y registros de eventos
+                15, // Alertas y Notificaciones
+                16, // Respaldo y Recuperación
+                17, // Escaneo de vulnerabilidades
+                18, // Capacitación en Seguridad
             ],
         ];
 

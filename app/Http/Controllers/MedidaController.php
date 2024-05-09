@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\MedidaUpdateRequest;
 use App\Http\Requests\MedidaStoreRequest;
+use App\Models\AccionUser;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Medida;
 use App\Models\Producto;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use Illuminate\Support\Facades\DB;
 
 class MedidaController extends Controller
@@ -51,6 +53,8 @@ class MedidaController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("medidas", "crear");
             DB::commit();
             return redirect()->route('medidas.edit', $medida->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -85,6 +89,8 @@ class MedidaController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("medidas", "editar");
             DB::commit();
             return redirect()->route('medidas.edit', $medida->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -114,6 +120,8 @@ class MedidaController extends Controller
                     'fecha' => date('Y-m-d'),
                     'hora' => date('H:i:s')
                 ]);
+                // registrar accion usuario
+                AccionUser::registrarAccion("medidas", "eliminar");
                 DB::commit();
                 return response()->JSON([
                     'msg' => 'cambiar status',

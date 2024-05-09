@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccionUser;
 use App\Models\DatosUsuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -93,6 +95,9 @@ class DatosUsuarioController extends Controller
                 'hora' => date('H:i:s')
             ]);
 
+            // registrar accion usuario
+            AccionUser::registrarAccion("users", "crear");
+
             DB::commit();
             return redirect()->route('users.edit', $datosUsuario->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -151,14 +156,15 @@ class DatosUsuarioController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' MODIFICÓ UNA USUARIO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' MODIFICÓ UN USUARIO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
                 'modulo' => 'USUARIOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
-
+            // registrar accion usuario
+            AccionUser::registrarAccion("users", "editar");
             DB::commit();
             return redirect()->route('users.edit', $datosUsuario->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -183,13 +189,16 @@ class DatosUsuarioController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' ELIMINÓ UNA USUARIO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' ELIMINÓ UN USUARIO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
                 'modulo' => 'USUARIOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+
+            // registrar accion usuario
+            AccionUser::registrarAccion("users", "eliminar");
             DB::commit();
             return response()->JSON([
                 'msg' => 'success',

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TipoUpdateRequest;
 use App\Http\Requests\TipoRequest;
-
+use App\Models\AccionUser;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Tipo;
 use App\Models\Producto;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use Illuminate\Support\Facades\DB;
 
 class TipoController extends Controller
@@ -46,13 +47,14 @@ class TipoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UN TIPO DE PRODUCTO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UN TIPO',
                 'datos_original' => $datos_original,
-                'modulo' => 'TIPO DE PRODUCTOS',
+                'modulo' => 'TIPOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
-
+            // registrar accion usuario
+            AccionUser::registrarAccion("tipos", "crear");
             DB::commit();
             return redirect()->route('tipos.edit', $tipo->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -80,13 +82,15 @@ class TipoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' MODIFICÓ UN TIPO DE PRODUCTO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' MODIFICÓ UN TIPO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'TIPO DE PRODUCTOS',
+                'modulo' => 'TIPOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("tipos", "editar");
             DB::commit();
             return redirect()->route('tipos.edit', $tipo->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -111,12 +115,14 @@ class TipoController extends Controller
                 HistorialAccion::create([
                     'user_id' => Auth::user()->id,
                     'accion' => 'MODIFICACIÓN',
-                    'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' ELIMINÓ UN TIPO DE PRODUCTO',
+                    'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' ELIMINÓ UN TIPO',
                     'datos_original' => $datos_original,
-                    'modulo' => 'TIPO DE PRODUCTOS',
+                    'modulo' => 'TIPOS',
                     'fecha' => date('Y-m-d'),
                     'hora' => date('H:i:s')
                 ]);
+                // registrar accion usuario
+                AccionUser::registrarAccion("tipos", "eliminar");
                 DB::commit();
                 return response()->JSON([
                     'msg' => 'cambiar status',

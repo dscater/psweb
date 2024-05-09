@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\MarcaStoreRequest;
 use App\Http\Requests\MarcaUpdateRequest;
+use App\Models\AccionUser;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Marca;
 use App\Models\Producto;
 use App\Models\Empresa;
+use App\Models\HistorialAccion;
 use Illuminate\Support\Facades\DB;
 
 class MarcaController extends Controller
@@ -51,6 +53,8 @@ class MarcaController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("marcas", "crear");
             DB::commit();
             return redirect()->route('marcas.edit', $marca->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -85,6 +89,8 @@ class MarcaController extends Controller
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("marcas", "editar");
             DB::commit();
             return redirect()->route('marcas.edit', $marca->id)->with('success', 'success');
         } catch (\Exception $e) {
@@ -114,6 +120,8 @@ class MarcaController extends Controller
                     'fecha' => date('Y-m-d'),
                     'hora' => date('H:i:s')
                 ]);
+                // registrar accion usuario
+                AccionUser::registrarAccion("marcas", "eliminar");
                 DB::commit();
                 return response()->JSON([
                     'msg' => 'cambiar status',
