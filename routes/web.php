@@ -11,6 +11,7 @@ use App\Models\Empresa;
 use App\Http\Controllers\DatosUsuarioController;
 use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\EscaneoVunerabilidadController;
+use App\Http\Controllers\EventoSeguridadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\MarcaController;
@@ -41,6 +42,11 @@ Route::get('/', function () {
     $empresa = Empresa::first();
     return view('auth.login', compact('empresa'));
 })->name("inicio_app");
+
+Route::get('/login', function () {
+    $empresa = Empresa::first();
+    return view('auth.login', compact('empresa'));
+})->name("login.view");
 
 Route::middleware(['security.login', 'throttle.login'])->group(function () {
     Route::post("/login", [LoginController::class, 'login'])->name("login");
@@ -75,19 +81,19 @@ Route::middleware(['auth'])->group(function () {
     Route::POST('users/configurar/cuenta/update/foto/{user}', [DatosUsuarioController::class, 'cuenta_update_foto'])->name('users.config_update_foto');
 
     // PROVEEDORES
-    Route::get('pymes', [ProveedorController::class, 'index'])->name('proveedors.index');
+    Route::get('pymes', [ProveedorController::class, 'index'])->name('pymes.index');
 
-    Route::get('pymes/create', [ProveedorController::class, 'create'])->name('proveedors.create');
+    Route::get('pymes/create', [ProveedorController::class, 'create'])->name('pymes.create');
 
-    Route::get('pymes/show/{proveedor}', [ProveedorController::class, 'show'])->name('proveedors.show');
+    Route::get('pymes/show/{proveedor}', [ProveedorController::class, 'show'])->name('pymes.show');
 
-    Route::get('pymes/edit/{proveedor}', [ProveedorController::class, 'edit'])->name('proveedors.edit');
+    Route::get('pymes/edit/{proveedor}', [ProveedorController::class, 'edit'])->name('pymes.edit');
 
-    Route::post('pymes/store', [ProveedorController::class, 'store'])->name('proveedors.store');
+    Route::post('pymes/store', [ProveedorController::class, 'store'])->name('pymes.store');
 
-    Route::put('pymes/update/{proveedor}', [ProveedorController::class, 'update'])->name('proveedors.update');
+    Route::put('pymes/update/{proveedor}', [ProveedorController::class, 'update'])->name('pymes.update');
 
-    Route::delete('pymes/destroy/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedors.destroy');
+    Route::delete('pymes/destroy/{proveedor}', [ProveedorController::class, 'destroy'])->name('pymes.destroy');
 
     // PRODUCTOS
     Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
@@ -299,6 +305,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('respaldo_recuperacion/store', [RespaldoRecuperacionController::class, 'store'])->name('respaldo_recuperacion.store');
 
+    Route::post('respaldo_recuperacion/cargaRecuperacion/{respaldoDb}', [RespaldoRecuperacionController::class, 'cargaRecuperacion'])->name('respaldo_recuperacion.cargaRecuperacion');
+
     Route::put('respaldo_recuperacion/update/{tipo}', [RespaldoRecuperacionController::class, 'update'])->name('respaldo_recuperacion.update');
 
     Route::delete('respaldo_recuperacion/destroy/{tipo}', [RespaldoRecuperacionController::class, 'destroy'])->name('respaldo_recuperacion.destroy');
@@ -332,6 +340,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('capacitacion_seguridads/update/{tipo}', [CapacitacionSeguridadController::class, 'update'])->name('capacitacion_seguridads.update');
 
     Route::delete('capacitacion_seguridads/destroy/{tipo}', [CapacitacionSeguridadController::class, 'destroy'])->name('capacitacion_seguridads.destroy');
+
+    // CAPACITACION SEGURIDAD
+    Route::get('eventos_seguridads', [EventoSeguridadController::class, 'index'])->name('eventos_seguridads.index');
+    Route::get('eventos_seguridads/byUser', [EventoSeguridadController::class, 'byUser'])->name('eventos_seguridads.byUser');
+    Route::get('eventos_seguridads/show/{notificacion_user}', [EventoSeguridadController::class, 'show'])->name('eventos_seguridads.show');
 
     // REPORTES
     Route::get('reportes', [ReporteController::class, 'index'])->name('reportes.index');

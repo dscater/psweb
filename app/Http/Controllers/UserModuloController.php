@@ -56,7 +56,7 @@ class UserModuloController extends Controller
                 $descripcion = "POR SEGURIDAD DEL SISTEMA SE LE HA HABILITADO EL PERMISO DE " . $permiso . " DE " . mb_strtoupper($user_modulo->modulo->titulo);
             }
 
-            NotificacionUser::registraNotificacion($user_modulo->user, $descripcion);
+            NotificacionUser::registraNotificacion($user_modulo->user, $descripcion, 'GESTIÓN DE USUARIOS Y ROLES');
 
             DB::commit();
             return response()->JSON([

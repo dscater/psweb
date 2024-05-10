@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 09-05-2024 a las 22:29:12
+-- Tiempo de generación: 10-05-2024 a las 22:37:30
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -43,39 +43,103 @@ CREATE TABLE `accion_users` (
 --
 
 INSERT INTO `accion_users` (`id`, `modulo_id`, `user_id`, `crear`, `editar`, `eliminar`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(2, 2, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(3, 3, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(4, 4, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(5, 5, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(6, 6, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(7, 7, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(8, 8, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(9, 9, 2, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(10, 2, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(11, 3, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(12, 4, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(13, 5, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(14, 6, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(15, 7, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(16, 8, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(17, 9, 3, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(18, 11, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(19, 12, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(20, 13, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(21, 14, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(22, 15, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(23, 16, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(24, 17, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(25, 18, 4, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(26, 11, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(27, 12, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(28, 13, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(29, 14, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(30, 15, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(31, 16, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(32, 17, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(33, 18, 5, 0, 0, 0, '2024-05-09 21:02:11', '2024-05-09 21:02:11');
+(1, 1, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(2, 2, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(3, 3, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(4, 4, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(5, 5, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(6, 6, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(7, 7, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(8, 8, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(9, 9, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(10, 11, 2, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(11, 2, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(12, 3, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(13, 4, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(14, 5, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(15, 6, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(16, 7, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(17, 8, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(18, 9, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(19, 11, 3, 0, 0, 0, '2024-05-10 20:50:56', '2024-05-10 20:50:56');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alerta_notificacions`
+--
+
+CREATE TABLE `alerta_notificacions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `enviado` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `autenticacion_seguras`
+--
+
+CREATE TABLE `autenticacion_seguras` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `enviado` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `autenticacion_seguras`
+--
+
+INSERT INTO `autenticacion_seguras` (`id`, `user_id`, `descripcion`, `enviado`, `created_at`, `updated_at`) VALUES
+(1, 2, 'RENOVAR', 1, '2024-05-10 21:09:37', '2024-05-10 21:09:37'),
+(2, 3, 'RENOVAR', 1, '2024-05-10 21:09:37', '2024-05-10 21:09:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `autorizacion_adecuadas`
+--
+
+CREATE TABLE `autorizacion_adecuadas` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `modulo_id` bigint UNSIGNED NOT NULL,
+  `crear` int NOT NULL,
+  `editar` int NOT NULL,
+  `eliminar` int NOT NULL,
+  `enviado` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `capacitacion_seguridads`
+--
+
+CREATE TABLE `capacitacion_seguridads` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `enviado` int NOT NULL DEFAULT '0',
+  `total_registros` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `capacitacion_seguridads`
+--
+
+INSERT INTO `capacitacion_seguridads` (`id`, `user_id`, `enviado`, `total_registros`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 4, '2024-05-10 21:09:50', '2024-05-10 22:32:01'),
+(2, 3, 1, 2, '2024-05-10 21:09:50', '2024-05-10 21:09:50');
 
 -- --------------------------------------------------------
 
@@ -184,17 +248,38 @@ INSERT INTO `empresas` (`id`, `cod`, `nit`, `nro_aut`, `nro_emp`, `name`, `alias
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `escano_vulnerabilidads`
+--
+
+CREATE TABLE `escano_vulnerabilidads` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `enviado` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `escano_vulnerabilidads`
+--
+
+INSERT INTO `escano_vulnerabilidads` (`id`, `user_id`, `enviado`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '2024-05-10 22:06:35', '2024-05-10 22:09:26');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `historial_accions`
 --
 
 CREATE TABLE `historial_accions` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `accion` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `datos_original` text COLLATE utf8mb4_unicode_ci,
-  `datos_nuevo` text COLLATE utf8mb4_unicode_ci,
-  `modulo` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accion` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `datos_original` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `datos_nuevo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `modulo` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -344,7 +429,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (225, '2024_05_02_181317_create_user_modulos_table', 3),
 (226, '2024_05_08_132815_create_accion_users_table', 4),
 (227, '2024_05_08_132825_create_notificacion_users_table', 5),
-(228, '2024_05_08_133006_create_historial_accions_table', 6);
+(228, '2024_05_08_133006_create_historial_accions_table', 6),
+(229, '2024_05_10_112410_create_respaldos_table', 7),
+(230, '2024_05_10_113856_create_alerta_notificacions_table', 8),
+(231, '2024_05_10_115241_create_escano_vulnerabilidads_table', 9),
+(232, '2024_05_10_115317_create_capacitacion_seguridads_table', 10),
+(233, '2024_05_10_120631_create_respaldo_dbs_table', 11),
+(234, '2024_05_10_124019_create_autenticacion_seguras_table', 12),
+(235, '2024_05_10_125225_create_autorizacion_adecuadas_table', 13);
 
 -- --------------------------------------------------------
 
@@ -354,10 +446,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `modulos` (
   `id` bigint UNSIGNED NOT NULL,
-  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -367,24 +459,23 @@ CREATE TABLE `modulos` (
 --
 
 INSERT INTO `modulos` (`id`, `titulo`, `url`, `icon`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Usuarios', 'users', 'people', 'users.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(2, 'Pymes', 'proveedors', 'local_shipping', 'proveedors.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(3, 'Productos', 'productos', 'local_offer', 'productos.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(4, 'Tipos', 'tipos', 'view_list', 'tipos.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(5, 'Marcas', 'marcas', 'bookmark', 'marcas.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(6, 'Medidas', 'medidas', 'list', 'medidas.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(7, 'Ingresos', 'ingresos', 'local_shipping', 'ingresos.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(8, 'Salidas', 'salidas', 'input', 'salidas.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(9, 'Tipos Ingresos/Salidas', 'tipo_ingreso_salida', 'assignment_turned_in', 'tipo_ingreso_salida.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(10, 'Reportes', 'reportes', 'assessment', 'reportes.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(11, 'Usuarios y Roles', 'usuarios_roles', 'view_list', 'usuarios_roles.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(12, 'Autentiación Segura', 'autenticacion_seguras', 'view_list', 'autenticacion_seguras.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(13, 'Autorización Adecuada', 'autenticacion_adecuadas', 'view_list', 'autenticacion_adecuadas.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(14, 'Auditoría y registros de eventos', 'auditoria_eventos', 'view_list', 'auditoria_eventos.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(15, 'Alertas y Notificaciones', 'alertas_notificacions', 'view_list', 'alertas_notificacions.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(16, 'Respaldo y Recuperación', 'respaldo_recuperacion', 'view_list', 'respaldo_recuperacion.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(17, 'Escaneo de vulnerabilidades', 'escaneo_vulnerabilidads', 'view_list', 'escaneo_vulnerabilidads.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02'),
-(18, 'Capacitación en Seguridad', 'capacitacion_seguridads', 'view_list', 'capacitacion_seguridads.index', '2024-05-09 21:02:02', '2024-05-09 21:02:02');
+(1, 'Usuarios', 'users', 'people', 'users.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(2, 'Pymes', 'pymes', 'local_shipping', 'pymes.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(3, 'Productos', 'productos', 'local_offer', 'productos.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(4, 'Tipos', 'tipos', 'view_list', 'tipos.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(5, 'Marcas', 'marcas', 'bookmark', 'marcas.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(6, 'Medidas', 'medidas', 'list', 'medidas.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(7, 'Ingresos', 'ingresos', 'local_shipping', 'ingresos.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(8, 'Salidas', 'salidas', 'input', 'salidas.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(9, 'Tipos Ingresos/Salidas', 'tipo_ingreso_salida', 'assignment_turned_in', 'tipo_ingreso_salida.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(10, 'Reportes', 'reportes', 'assessment', 'reportes.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(11, 'Eventos de seguridad', 'eventos_seguridads', 'view_list', 'eventos_seguridads.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(12, 'Usuarios y Roles', 'usuarios_roles', 'view_list', 'usuarios_roles.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(13, 'Autenticación Segura', 'autenticacion_seguras', 'view_list', 'autenticacion_seguras.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(14, 'Autorización Adecuada', 'autenticacion_adecuadas', 'view_list', 'autenticacion_adecuadas.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(15, 'Auditoría y registros de eventos', 'auditoria_eventos', 'view_list', 'auditoria_eventos.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(16, 'Respaldo y Recuperación', 'respaldo_recuperacion', 'view_list', 'respaldo_recuperacion.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22'),
+(17, 'Capacitación en Seguridad', 'capacitacion_seguridads', 'view_list', 'capacitacion_seguridads.index', '2024-05-10 20:50:22', '2024-05-10 20:50:22');
 
 -- --------------------------------------------------------
 
@@ -395,7 +486,9 @@ INSERT INTO `modulos` (`id`, `titulo`, `url`, `icon`, `slug`, `created_at`, `upd
 CREATE TABLE `notificacion_users` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `visto` int NOT NULL DEFAULT '0',
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -406,15 +499,17 @@ CREATE TABLE `notificacion_users` (
 -- Volcado de datos para la tabla `notificacion_users`
 --
 
-INSERT INTO `notificacion_users` (`id`, `user_id`, `descripcion`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
-(1, 2, 'POR SEGURIDAD DEL SISTEMA SE LE HA DESHABILITADO EL PERMISO DE EDICIÓN DE USUARIOS', '2024-05-09', '17:15:54', '2024-05-09 21:15:54', '2024-05-09 21:15:54'),
-(2, 2, 'POR SEGURIDAD DEL SISTEMA SE LE HA HABILITADO EL PERMISO DE EDICIÓN DE USUARIOS', '2024-05-09', '17:16:16', '2024-05-09 21:16:16', '2024-05-09 21:16:16'),
-(3, 2, 'POR SEGURIDAD DEL SISTEMA LA CUENTA DEL USUARIO CARLOS QUISPE QUISPE HA SIDO BLOQUEADO DURANTE 5 MINUTOS EN FECHA Y HORA 09/05/2024 17:56:59 \n                    (PRESUNTO ATAQUE A LA CUENTA DE USUARIO)', '2024-05-09', '17:56:59', '2024-05-09 21:56:59', '2024-05-09 21:56:59'),
-(4, 4, 'POR SEGURIDAD DEL SISTEMA LA CUENTA DEL USUARIO CARLOS QUISPE QUISPE HA SIDO BLOQUEADO DURANTE 5 MINUTOS EN FECHA Y HORA 09/05/2024 17:56:59 \n                    (PRESUNTO ATAQUE A LA CUENTA DE USUARIO)', '2024-05-09', '17:56:59', '2024-05-09 21:56:59', '2024-05-09 21:56:59'),
-(5, 5, 'POR SEGURIDAD DEL SISTEMA LA CUENTA DEL USUARIO CARLOS QUISPE QUISPE HA SIDO BLOQUEADO DURANTE 5 MINUTOS EN FECHA Y HORA 09/05/2024 17:56:59 \n                    (PRESUNTO ATAQUE A LA CUENTA DE USUARIO)', '2024-05-09', '17:56:59', '2024-05-09 21:56:59', '2024-05-09 21:56:59'),
-(6, 5, 'POR SEGURIDAD DEL SISTEMA LE NOTIFICAMOS QUE SU CUENTA HA RECIBIDO VARIOS INTENTOS DE ACCESOS, LE RECOMENDAMOS ACTUALIZAR SU CONTRASEÑA”', '2024-05-09', '18:25:56', '2024-05-09 22:25:56', '2024-05-09 22:25:56'),
-(7, 5, 'POR SEGURIDAD DEL SISTEMA LE NOTIFICAMOS QUE SU CUENTA HA RECIBIDO VARIOS INTENTOS DE ACCESOS, LE RECOMENDAMOS ACTUALIZAR SU CONTRASEÑA”', '2024-05-09', '18:28:01', '2024-05-09 22:28:01', '2024-05-09 22:28:01'),
-(8, 5, 'POR SEGURIDAD DEL SISTEMA LE NOTIFICAMOS QUE SU CUENTA HA RECIBIDO VARIOS INTENTOS DE ACCESOS, LE RECOMENDAMOS ACTUALIZAR SU CONTRASEÑA”', '2024-05-09', '18:28:45', '2024-05-09 22:28:45', '2024-05-09 22:28:45');
+INSERT INTO `notificacion_users` (`id`, `user_id`, `descripcion`, `tipo`, `visto`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(1, 2, 'POR SEGURIDAD DEL SISTEMA DEBE RENOVAR SU CONTRASEÑA CON EL USO DE CARACTERES Y NÚMEROS', 'AUTENTICACIÓN SEGURA', 1, '2024-05-10', '17:09:37', '2024-05-10 21:09:37', '2024-05-10 21:34:56'),
+(2, 3, 'POR SEGURIDAD DEL SISTEMA DEBE RENOVAR SU CONTRASEÑA CON EL USO DE CARACTERES Y NÚMEROS', 'AUTENTICACIÓN SEGURA', 0, '2024-05-10', '17:09:37', '2024-05-10 21:09:37', '2024-05-10 21:09:37'),
+(3, 2, 'POR SEGURIDAD DEL SISTEMA LE RECOMENDAMOS TOMAR EL CURSO DE CAPACITACIÓN DEL SISTEMA PARA UN MEJOR MANEJO Y COMPRENSIÓN', 'CAPACITACIÓN EN SEGURIDAD', 1, '2024-05-10', '17:09:50', '2024-05-10 21:09:50', '2024-05-10 22:32:29'),
+(4, 3, 'POR SEGURIDAD DEL SISTEMA LE RECOMENDAMOS TOMAR EL CURSO DE CAPACITACIÓN DEL SISTEMA PARA UN MEJOR MANEJO Y COMPRENSIÓN', 'CAPACITACIÓN EN SEGURIDAD', 0, '2024-05-10', '17:09:50', '2024-05-10 21:09:50', '2024-05-10 21:09:50'),
+(5, 2, 'POR SEGURIDAD DEL SISTEMA SE LE HA DESHABILITADO EL PERMISO DE EDICIÓN DE USUARIOS', 'GESTIÓN DE USUARIOS Y ROLES', 0, '2024-05-10', '17:59:33', '2024-05-10 21:59:33', '2024-05-10 21:59:33'),
+(6, 2, 'POR SEGURIDAD DEL SISTEMA LE RECOMENDAMOS CERRAR SESIÓN EN CASO DE NO UTILIZAR EL SISTEMA', 'ESCANEO DE VULNERABILIDADES', 0, '2024-05-10', '18:09:26', '2024-05-10 22:09:26', '2024-05-10 22:09:26'),
+(7, 2, 'POR SEGURIDAD DEL SISTEMA LE RECOMENDAMOS TOMAR EL CURSO DE CAPACITACIÓN DEL SISTEMA PARA UN MEJOR MANEJO Y COMPRENSIÓN', 'CAPACITACIÓN EN SEGURIDAD', 0, '2024-05-10', '18:09:26', '2024-05-10 22:09:26', '2024-05-10 22:09:26'),
+(8, 2, 'POR SEGURIDAD DEL SISTEMA LE RECOMENDAMOS TOMAR EL CURSO DE CAPACITACIÓN DEL SISTEMA PARA UN MEJOR MANEJO Y COMPRENSIÓN', 'CAPACITACIÓN EN SEGURIDAD', 0, '2024-05-10', '18:32:01', '2024-05-10 22:32:01', '2024-05-10 22:32:01'),
+(9, 2, 'POR SEGURIDAD DEL SISTEMA SE LE HA DESHABILITADO EL PERMISO DE EDICIÓN DE PYMES', 'GESTIÓN DE USUARIOS Y ROLES', 0, '2024-05-10', '18:32:17', '2024-05-10 22:32:17', '2024-05-10 22:32:17'),
+(10, 2, 'POR SEGURIDAD DEL SISTEMA SE LE HA DESHABILITADO EL PERMISO DE ELIMINACIÓN DE PYMES', 'GESTIÓN DE USUARIOS Y ROLES', 1, '2024-05-10', '18:32:24', '2024-05-10 22:32:24', '2024-05-10 22:37:14');
 
 -- --------------------------------------------------------
 
@@ -542,6 +637,43 @@ INSERT INTO `proveedors` (`id`, `razon_social_p`, `nit_pro_p`, `numa_pro_p`, `di
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `respaldos`
+--
+
+CREATE TABLE `respaldos` (
+  `id` bigint UNSIGNED NOT NULL,
+  `ruta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `respaldos`
+--
+
+INSERT INTO `respaldos` (`id`, `ruta`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'C:\\laragon\\bin\\mysql\\mysql-8.0.30-winx64\\bin', 'RUTA DE MYSQL', NULL, NULL),
+(2, 'D:\\TrabajosRed\\temp\\PSWEB\\backups', 'RUTA DONDE SE ALMACENAN LOS BACKUPS', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respaldo_dbs`
+--
+
+CREATE TABLE `respaldo_dbs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `salidas`
 --
 
@@ -655,7 +787,7 @@ CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `txt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `txt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ultimo` date DEFAULT NULL,
   `tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -698,51 +830,45 @@ CREATE TABLE `user_modulos` (
 --
 
 INSERT INTO `user_modulos` (`id`, `user_id`, `modulo_id`, `listar`, `crear`, `editar`, `eliminar`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:16:16'),
-(2, 2, 2, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(3, 2, 3, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(4, 2, 4, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(5, 2, 5, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(6, 2, 6, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(7, 2, 7, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(8, 2, 8, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(9, 2, 9, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(10, 2, 10, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(11, 3, 2, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(12, 3, 3, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(13, 3, 4, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(14, 3, 5, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(15, 3, 6, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(16, 3, 7, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(17, 3, 8, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(18, 3, 9, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(19, 3, 10, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(20, 4, 11, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(21, 4, 12, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(22, 4, 13, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(23, 4, 14, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(24, 4, 15, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(25, 4, 16, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(26, 4, 17, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(27, 4, 18, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(28, 5, 11, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(29, 5, 12, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(30, 5, 13, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(31, 5, 14, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(32, 5, 15, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(33, 5, 16, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(34, 5, 17, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(35, 5, 18, 1, 1, 1, 1, '2024-05-09 21:02:11', '2024-05-09 21:02:11'),
-(36, 1, 1, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(37, 1, 2, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(38, 1, 3, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(39, 1, 4, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(40, 1, 5, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(41, 1, 6, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(42, 1, 7, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(43, 1, 8, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(44, 1, 9, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57'),
-(45, 1, 10, 1, 1, 1, 1, '2024-05-09 21:36:57', '2024-05-09 21:36:57');
+(1, 1, 1, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(2, 1, 2, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(3, 1, 3, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(4, 1, 4, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(5, 1, 5, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(6, 1, 6, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(7, 1, 7, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(8, 1, 8, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(9, 1, 9, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(10, 1, 10, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(11, 1, 11, 1, 1, 1, 1, '2024-05-10 20:50:24', '2024-05-10 20:50:24'),
+(12, 5, 11, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(13, 5, 12, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(14, 5, 13, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(15, 5, 14, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(16, 5, 15, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(17, 5, 16, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(18, 5, 17, 1, 1, 1, 1, '2024-05-10 20:50:26', '2024-05-10 20:50:26'),
+(19, 2, 1, 1, 1, 0, 1, '2024-05-10 20:50:56', '2024-05-10 21:59:33'),
+(20, 2, 2, 1, 1, 0, 0, '2024-05-10 20:50:56', '2024-05-10 22:32:24'),
+(21, 2, 3, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(22, 2, 4, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(23, 2, 5, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(24, 2, 6, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(25, 2, 7, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(26, 2, 8, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(27, 2, 9, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(28, 2, 10, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(29, 2, 11, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(30, 3, 2, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(31, 3, 3, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(32, 3, 4, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(33, 3, 5, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(34, 3, 6, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(35, 3, 7, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(36, 3, 8, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(37, 3, 9, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(38, 3, 10, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56'),
+(39, 3, 11, 1, 1, 1, 1, '2024-05-10 20:50:56', '2024-05-10 20:50:56');
 
 --
 -- Índices para tablas volcadas
@@ -752,6 +878,30 @@ INSERT INTO `user_modulos` (`id`, `user_id`, `modulo_id`, `listar`, `crear`, `ed
 -- Indices de la tabla `accion_users`
 --
 ALTER TABLE `accion_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `alerta_notificacions`
+--
+ALTER TABLE `alerta_notificacions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `autenticacion_seguras`
+--
+ALTER TABLE `autenticacion_seguras`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `autorizacion_adecuadas`
+--
+ALTER TABLE `autorizacion_adecuadas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `capacitacion_seguridads`
+--
+ALTER TABLE `capacitacion_seguridads`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -772,6 +922,12 @@ ALTER TABLE `datos_usuarios`
 -- Indices de la tabla `empresas`
 --
 ALTER TABLE `empresas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `escano_vulnerabilidads`
+--
+ALTER TABLE `escano_vulnerabilidads`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -856,6 +1012,18 @@ ALTER TABLE `proveedors`
   ADD KEY `proveedors_user_id_foreign` (`user_id`);
 
 --
+-- Indices de la tabla `respaldos`
+--
+ALTER TABLE `respaldos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `respaldo_dbs`
+--
+ALTER TABLE `respaldo_dbs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `salidas`
 --
 ALTER TABLE `salidas`
@@ -905,7 +1073,31 @@ ALTER TABLE `user_modulos`
 -- AUTO_INCREMENT de la tabla `accion_users`
 --
 ALTER TABLE `accion_users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `alerta_notificacions`
+--
+ALTER TABLE `alerta_notificacions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `autenticacion_seguras`
+--
+ALTER TABLE `autenticacion_seguras`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `autorizacion_adecuadas`
+--
+ALTER TABLE `autorizacion_adecuadas`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `capacitacion_seguridads`
+--
+ALTER TABLE `capacitacion_seguridads`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -926,10 +1118,16 @@ ALTER TABLE `empresas`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `escano_vulnerabilidads`
+--
+ALTER TABLE `escano_vulnerabilidads`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
@@ -953,19 +1151,19 @@ ALTER TABLE `medidas`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion_users`
 --
 ALTER TABLE `notificacion_users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -984,6 +1182,18 @@ ALTER TABLE `producto_rfids`
 --
 ALTER TABLE `proveedors`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `respaldos`
+--
+ALTER TABLE `respaldos`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `respaldo_dbs`
+--
+ALTER TABLE `respaldo_dbs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `salidas`
@@ -1019,7 +1229,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `user_modulos`
 --
 ALTER TABLE `user_modulos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas

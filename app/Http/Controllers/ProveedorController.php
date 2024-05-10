@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Proveedor;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
@@ -28,6 +29,10 @@ class ProveedorController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("pymes", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('proveedores.create', compact('empresa'));
@@ -65,9 +70,9 @@ class ProveedorController extends Controller
             ]);
 
             // registrar accion usuario
-            AccionUser::registrarAccion("proveedors", "crear");
+            AccionUser::registrarAccion("pymes", "crear");
             DB::commit();
-            return redirect()->route('proveedores.edit', $proveedor->id)->with('success', 'success');
+            return redirect()->route('pymes.edit', $proveedor->id)->with('success', 'success');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->bac()->with('error', 'error');
@@ -76,6 +81,10 @@ class ProveedorController extends Controller
 
     public function edit(Proveedor $proveedor)
     {
+        if (!Modulo::canMod("pymes", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('proveedores.edit', compact('empresa', 'proveedor'));
@@ -114,9 +123,9 @@ class ProveedorController extends Controller
                 'hora' => date('H:i:s')
             ]);
             // registrar accion usuario
-            AccionUser::registrarAccion("proveedors", "editar");
+            AccionUser::registrarAccion("pymes", "editar");
             DB::commit();
-            return redirect()->route('proveedores.edit', $proveedor->id)->with('success', 'success');
+            return redirect()->route('pymes.edit', $proveedor->id)->with('success', 'success');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'error');
@@ -147,7 +156,7 @@ class ProveedorController extends Controller
                 'hora' => date('H:i:s')
             ]);
             // registrar accion usuario
-            AccionUser::registrarAccion("proveedors", "eliminar");
+            AccionUser::registrarAccion("pymes", "eliminar");
             DB::commit();
             return response()->JSON([
                 'msg' => 'success',

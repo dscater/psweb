@@ -189,6 +189,7 @@ class User extends Authenticatable
                 8, //Salidas
                 9, //Tipo Ingresos/Salidas
                 10, //Reportes
+                11, //Eventos de seguridad
             ],
             "ALMACENERO" => [
                 2, //Pymes
@@ -200,17 +201,16 @@ class User extends Authenticatable
                 8, //Salidas
                 9, //Tipo Ingresos/Salidas
                 10, //Reportes
+                11, //Eventos de seguridad
             ],
             "SUPERVISOR DE CALIDAD" => [
-                11, //Usuarios y ROles
-                12, //Autentiación Segura
-                13, //Autorización Adecuada
-                // 14, //Prevención de ataques
-                14, // Auditoría y registros de eventos
-                15, // Alertas y Notificaciones
+                11, //Eventos de seguridad
+                12, //Usuarios y Roles
+                13, //Autentiación Segura
+                14, //Autorización Adecuada
+                15, // Auditoría y registros de eventos
                 16, // Respaldo y Recuperación
-                17, // Escaneo de vulnerabilidades
-                18, // Capacitación en Seguridad
+                17, // Capacitación en Seguridad
             ],
         ];
 

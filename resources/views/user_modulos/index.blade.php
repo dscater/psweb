@@ -66,7 +66,7 @@
                                         <div class="panel-body">
                                             <ol>
                                                 @foreach ($administradores as $item)
-                                                {{-- @php
+                                                    {{-- @php
                                                     $o_modulo::getMenuUsuario($item);
                                                 @endphp --}}
                                                     <li>
@@ -82,7 +82,7 @@
                                                             aria-expanded="true" style="">
                                                             <ul class="list-group group_user">
                                                                 @foreach ($item->user_modulos as $value)
-                                                                    @if ($value->modulo->url != 'reportes')
+                                                                    @if ($value->modulo->url != 'reportes' && $value->modulo->url != 'eventos_setguridads')
                                                                         <li class="list-group-item modulos">
                                                                             {{ $value->modulo->titulo }}
                                                                             <div class="acciones">
@@ -157,7 +157,7 @@
                                         <div class="panel-body">
                                             <ol>
                                                 @foreach ($almaceneros as $item)
-                                                {{-- @php
+                                                    {{-- @php
                                                     $o_modulo::getMenuUsuario($item);
                                                 @endphp --}}
                                                     <li>
@@ -174,7 +174,7 @@
                                                             aria-expanded="true" style="">
                                                             <ul class="list-group group_user">
                                                                 @foreach ($item->user_modulos as $value)
-                                                                    @if ($value->modulo->url != 'reportes')
+                                                                    @if ($value->modulo->url != 'reportes' && $value->modulo->url != 'eventos_setguridads')
                                                                         <li class="list-group-item modulos">
                                                                             {{ $value->modulo->titulo }}
                                                                             <div class="acciones">

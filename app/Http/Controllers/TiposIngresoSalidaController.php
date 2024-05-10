@@ -12,6 +12,7 @@ use App\Models\Ingreso;
 use App\Models\Salida;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class TiposIngresoSalidaController extends Controller
@@ -31,6 +32,10 @@ class TiposIngresoSalidaController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("tipo_ingreso_salida", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('tipos_is.create', compact('empresa'));
@@ -67,6 +72,9 @@ class TiposIngresoSalidaController extends Controller
 
     public function edit(TiposIngresoSalida $tipo)
     {
+        if (!Modulo::canMod("tipo_ingreso_salida", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('tipos_is.edit', compact('empresa', 'tipo'));

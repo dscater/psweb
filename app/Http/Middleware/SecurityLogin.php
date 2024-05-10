@@ -44,7 +44,7 @@ class SecurityLogin
                     $fecha = date("d/m/Y");
                     $hora = date("H:i:s");
                     $descripcion = "POR SEGURIDAD DEL SISTEMA LA CUENTA DEL USUARIO " . $user->full_name . " HA SIDO BLOQUEADO DURANTE 5 MINUTOS EN FECHA Y HORA " . $fecha . " " . $hora . " (PRESUNTO ATAQUE A LA CUENTA DE USUARIO)";
-                    NotificacionUser::registraNotificacion($user, $descripcion);
+                    NotificacionUser::registraNotificacion($user, $descripcion, 'PREVENCIÓN DE ATAQUES');
                     $users_supervisor_calidad = User::where("tipo", "SUPERVISOR DE CALIDAD")->get();
                     foreach ($users_supervisor_calidad as $item) {
                         NotificacionUser::registraNotificacion($item, $descripcion);

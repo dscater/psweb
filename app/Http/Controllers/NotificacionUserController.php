@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class NotificacionUserController extends Controller
 {
-    //
+    public function getByUser()
+    {
+    }
 }

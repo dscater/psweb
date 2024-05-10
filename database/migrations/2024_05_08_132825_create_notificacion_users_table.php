@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->string("descripcion");
+            $table->string("tipo");
+            $table->integer("visto")->default(0);
             $table->date("fecha");
             $table->time("hora");
             $table->timestamps();

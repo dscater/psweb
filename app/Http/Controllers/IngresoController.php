@@ -13,6 +13,7 @@ use App\Models\TiposIngresoSalida;
 use App\Models\ProductoRfid;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class IngresoController extends Controller
@@ -55,6 +56,10 @@ class IngresoController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("ingresos", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
 
         $productos = Producto::where('status', '=', 1)->get();
@@ -147,6 +152,10 @@ class IngresoController extends Controller
 
     public function edit(Ingreso $ingreso)
     {
+        if (!Modulo::canMod("ingresos", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('ingresos.edit', compact('empresa', 'ingreso'));

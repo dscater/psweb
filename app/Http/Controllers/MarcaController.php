@@ -12,6 +12,7 @@ use App\Models\Marca;
 use App\Models\Producto;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class MarcaController extends Controller
@@ -31,6 +32,9 @@ class MarcaController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("marcas", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('marcas.create', compact('empresa'));
@@ -65,6 +69,9 @@ class MarcaController extends Controller
 
     public function edit(Marca $marca)
     {
+        if (!Modulo::canMod("marcas", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('marcas.edit', compact('empresa', 'marca'));

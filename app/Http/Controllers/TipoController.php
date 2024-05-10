@@ -12,6 +12,7 @@ use App\Models\Tipo;
 use App\Models\Producto;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class TipoController extends Controller
@@ -31,6 +32,10 @@ class TipoController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("tipos", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('tipos.create', compact('empresa'));
@@ -65,6 +70,11 @@ class TipoController extends Controller
 
     public function edit(Tipo $tipo)
     {
+
+        if (!Modulo::canMod("tipos", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('tipos.edit', compact('empresa', 'tipo'));

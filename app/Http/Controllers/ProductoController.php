@@ -14,6 +14,7 @@ use App\Models\HistorialAccion;
 use App\Models\Tipo;
 use App\Models\Marca;
 use App\Models\Medida;
+use App\Models\Modulo;
 use App\Models\Proveedor;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,10 @@ class ProductoController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("productos", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
 
         $tipos = Tipo::all();
@@ -143,6 +148,10 @@ class ProductoController extends Controller
 
     public function edit(Producto $producto)
     {
+        if (!Modulo::canMod("productos", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
 
         $tipos = Tipo::all();

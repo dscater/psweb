@@ -21,16 +21,19 @@
 @endsection
 
 @section('content')
+    @inject('o_modulo', 'App\Models\Modulo')
     <section class="content">
         <div class="container-fluid">
-            <div class="row clearfix">
-                @if (Auth::user()->verificaPermiso('users', 'crear'))
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                        <a href="{{ route('users.create') }}" class="btn btn-primary"><i
-                                class="material-icons">person_add</i><span>Nuevo usuario</span></a>
-                    </div>
-                @endif
-            </div>
+            @if ($o_modulo::canMod('users', 'crear'))
+                <div class="row clearfix">
+                    @if (Auth::user()->verificaPermiso('users', 'crear'))
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
+                            <a href="{{ route('users.create') }}" class="btn btn-primary"><i
+                                    class="material-icons">person_add</i><span>Nuevo usuario</span></a>
+                        </div>
+                    @endif
+                </div>
+            @endif
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -77,14 +80,19 @@
                                                 <td><img src="{{ asset('imgs/personal/' . $user->foto_u) }}" width="75"
                                                         height="75"></td>
                                                 <td>
-                                                    <input type="text" name="eliminar" class="url_eliminar"
-                                                        value="{{ route('users.destroy', $user->user_id) }}" hidden>
-                                                    <a href="#" title="Eliminar" class="eliminar"><i
-                                                            class="material-icons eliminar">delete</i>
-                                                    </a>
-                                                    <a href="{{ route('users.edit', $user->datos_id) }}" title="Editar"><i
-                                                            class="material-icons editar">edit</i>
-                                                    </a>
+                                                    @if ($o_modulo::canMod('users', 'eliminar'))
+                                                        <input type="text" name="eliminar" class="url_eliminar"
+                                                            value="{{ route('users.destroy', $user->user_id) }}" hidden>
+                                                        <a href="#" title="Eliminar" class="eliminar"><i
+                                                                class="material-icons eliminar">delete</i>
+                                                        </a>
+                                                    @endif
+
+                                                    @if ($o_modulo::canMod('users', 'editar'))
+                                                        <a href="{{ route('users.edit', $user->datos_id) }}"
+                                                            title="Editar"><i class="material-icons editar">edit</i>
+                                                        </a>
+                                                    @endif
                                                     {{-- <a href="{{ route('users.show',$user->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
                                                 </td>
                                             </tr>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\NotificacionUser;
+use App\Models\AlertaNotificacion;
 use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Session;
@@ -45,8 +45,10 @@ class ThrottleLogin
                 // CREAR NOTIFICACION
                 $user = User::where("name", $request->name)->get()->first();
                 if ($user) {
-                    $descripcion = "POR SEGURIDAD DEL SISTEMA LE NOTIFICAMOS QUE SU CUENTA HA RECIBIDO VARIOS INTENTOS DE ACCESOS, LE RECOMENDAMOS ACTUALIZAR SU CONTRASEÑA”";
-                    NotificacionUser::registraNotificacion($user, $descripcion);
+                    AlertaNotificacion::create([
+                        "user_id" => $user->id,
+                        "enviado" => 0
+                    ]);
                 }
                 return redirect()->back()->withErrors(['error' => 'Intento fallido de inicio de sesión. Acceso bloqueado durante 5 minutos']);
             }

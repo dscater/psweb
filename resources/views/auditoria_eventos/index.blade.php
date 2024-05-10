@@ -95,6 +95,15 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3 d-block paginacion text-center">
+                                            {{ $historial_accions->firstItem() }} - {{ $historial_accions->lastItem() }} de
+                                            {{ $historial_accions->total() }}
+                                            <br>
+                                            {!! $historial_accions->links() !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

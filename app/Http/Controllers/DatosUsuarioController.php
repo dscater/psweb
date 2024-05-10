@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -30,6 +31,10 @@ class DatosUsuarioController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("users", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR') {
             return view('usuarios.create', compact('empresa'));
@@ -72,6 +77,9 @@ class DatosUsuarioController extends Controller
             $nuevo_usuario->foto = "user_default.png";
             $nuevo_usuario->status = 1;
             $nuevo_usuario->save();
+            Modulo::getMenuUsuario($nuevo_usuario);
+            AccionUser::inicializaAcciones($nuevo_usuario);
+
             // CREANDO LOS DATOS DEL USUARIO
             $datosUsuario = new DatosUsuario(array_map('mb_strtoupper', $request->except('foto_u')));
             //obtener el archivo
@@ -109,6 +117,10 @@ class DatosUsuarioController extends Controller
 
     public function edit(DatosUsuario $datosUsuario)
     {
+        if (!Modulo::canMod("users", "editar")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR') {
             return view('usuarios.edit', compact('empresa', 'datosUsuario'));
@@ -132,11 +144,17 @@ class DatosUsuarioController extends Controller
                     $codigo = "3" . substr($datosUsuario->user->name, 1, strlen($datosUsuario->user->name));
                     break;
             }
+            if ($datosUsuario->tipo != $request->tipo) {
+                $datosUsuario->user->user_modulos()->delete();
+            }
 
             $datosUsuario->user->tipo = $request->tipo;
             $datosUsuario->user->name = $codigo;
             $datosUsuario->user->save();
-
+            if ($datosUsuario->tipo != $request->tipo) {
+                Modulo::getMenuUsuario($datosUsuario->user);
+                AccionUser::inicializaAcciones($datosUsuario->user);
+            }
             $datos_original = HistorialAccion::getDetalleRegistro($datosUsuario, "datos_usuarios");
             $datosUsuario->update(array_map('mb_strtoupper', $request->except('foto_u')));
             if ($request->hasFile('foto_u')) {

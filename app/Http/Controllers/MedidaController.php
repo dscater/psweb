@@ -12,6 +12,7 @@ use App\Models\Medida;
 use App\Models\Producto;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class MedidaController extends Controller
@@ -31,6 +32,9 @@ class MedidaController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("medidas", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('medidas.create', compact('empresa'));
@@ -65,6 +69,9 @@ class MedidaController extends Controller
 
     public function edit(Medida $medida)
     {
+        if (!Modulo::canMod("medidas", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
         $empresa = Empresa::first();
         if (Auth::user()->tipo == 'ADMINISTRADOR' || Auth::user()->tipo == 'ALMACENERO') {
             return view('medidas.edit', compact('empresa', 'medida'));

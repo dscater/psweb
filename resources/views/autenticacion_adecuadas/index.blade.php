@@ -82,7 +82,7 @@
                                         <tbody>
                                             @foreach ($users as $item)
                                                 @php
-                                                    $o_accion_user::inicializaAcciones($item);
+                                                    // $o_accion_user::inicializaAcciones($item);
                                                 @endphp
                                                 <tr>
                                                     <td class="vertical-align-center"

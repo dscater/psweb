@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Modulo extends Model
@@ -44,5 +45,21 @@ class Modulo extends Model
 
         $modulos = $tiene_modulos;
         return $modulos;
+    }
+
+    public static function canMod($url, $accion)
+    {
+        $user = Auth::user();
+        $modulo = Modulo::where("url", $url)->get()->first();
+        if ($modulo && $user) {
+            $user_modulo = UserModulo::where("user_id", $user->id)->where("modulo_id", $modulo->id)->get()->first();
+            if ($user_modulo) {
+                if ($user_modulo[$accion] == 1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

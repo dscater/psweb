@@ -53,6 +53,42 @@
         .bg-deep-purple:hover {
             color: white;
         }
+
+        .contenedor_notificacions {
+            max-width: 500px;
+        }
+
+        .contenedor_notificacions .body .slimScrollDiv .menu {
+            overflow: auto !important;
+        }
+
+
+        .contenedor_notificacions .body .slimScrollDiv .menu li a {
+            display: flex;
+        }
+
+        .contenedor_notificacions .body .slimScrollDiv .menu li a .icon-circle {
+            width: 36px;
+        }
+
+        .contenedor_notificacions .body .slimScrollDiv .menu li a .menu-info {
+            width: calc(100% - 66px) !important;
+        }
+
+        .contenedor_notificacions .body .slimScrollDiv .menu li a .menu-info .desc_notificacion {
+            color: black;
+        }
+
+        .desc_notificacion {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .desc_notificacion.sin_ver {
+            font-weight: bold;
+            color: #4E9F18 !important;
+        }
     </style>
 </head>
 
@@ -70,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <p>Please wait...</p>
+            <p>Cargando...</p>
         </div>
     </div>
     <!-- #END# Page Loader -->
@@ -99,6 +135,35 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="true">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count" id="countNotificaciones">0</span>
+                        </a>
+                        <ul class="dropdown-menu contenedor_notificacions">
+                            <li class="header">EVENTOS DE SEGURIDAD</li>
+                            <li class="body">
+                                <div class="slimScrollDiv"
+                                    style="position: relative; overflow: hidden; width: auto; height: 254px;">
+                                    <ul class="menu" style="overflow: hidden; width: auto; height: 254px;"
+                                        id="contenedor_notificacions">
+
+                                    </ul>
+                                    <div class="slimScrollBar"
+                                        style="background: rgba(0, 0, 0, 0.5); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 0px; z-index: 99; right: 1px;">
+                                    </div>
+                                    <div class="slimScrollRail"
+                                        style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="footer">
+                                <a href="{{ route('eventos_seguridads.index') }}" class=" waves-effect waves-block">Ver
+                                    todos los eventos</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -333,6 +398,79 @@
 
     <!-- Demo Js -->
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/demo.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var tiempoInactividad = 5 * 60 * 1000; // 5 minutos
+            // var tiempoInactividad = 3000; // 3 segundos
+            var temporizador;
+
+            function restablecerTemporizador() {
+                clearTimeout(temporizador);
+                temporizador = setTimeout(function() {
+                    logout();
+                }, tiempoInactividad);
+            }
+
+
+            function logout() {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    type: "POST",
+                    url: "{{ route('logout') }}",
+                    data: {
+                        inactividad: true,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        alert('Se acaba de cerrar tu sesión por inactividad');
+                        window.location.reload();
+                    }
+                });
+            }
+
+            $(this).mousemove(function() {
+                restablecerTemporizador();
+            });
+
+            $(this).keypress(function() {
+                restablecerTemporizador();
+            });
+
+            restablecerTemporizador();
+        });
+
+        let id_actual = 0;
+        let contenedor_notificacions = $("#contenedor_notificacions");
+        let countNotificaciones = $("#countNotificaciones");
+
+        $(document).ready(function() {
+            cargaNotificaciones();
+            setInterval(() => {
+                cargaNotificaciones();
+            }, 1500);
+        });
+
+        function cargaNotificaciones() {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.byUser') }}",
+                data: {
+                    id_actual: id_actual,
+                },
+                dataType: "json",
+                success: function(response) {
+                    countNotificaciones.text(response.sin_ver);
+                    if (response.ultimo_id != id_actual) {
+                        id_actual = response.ultimo_id;
+                        contenedor_notificacions.prepend(response.html);
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

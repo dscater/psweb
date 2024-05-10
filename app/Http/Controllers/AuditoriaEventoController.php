@@ -9,7 +9,7 @@ class AuditoriaEventoController extends Controller
 {
     public function index()
     {
-        $historial_accions = HistorialAccion::orderBy("created_at", "desc")->get();
+        $historial_accions = HistorialAccion::orderBy("created_at", "desc")->paginate(20);
 
         return view("auditoria_eventos.index", compact("historial_accions"));
     }

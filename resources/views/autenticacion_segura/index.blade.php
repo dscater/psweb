@@ -87,7 +87,9 @@
                                                         {{ $item->c_password }}
                                                     </td>
                                                     <td>
-                                                        <button>Enviar Notificación</button>
+                                                        @if ($item->c_password != 'BUENA' || $item->c_password != 'FUERTE')
+                                                            <button>Enviar Notificación</button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -12,6 +12,7 @@ use App\Models\TiposIngresoSalida;
 use App\Models\ProductoRfid;
 use App\Models\Empresa;
 use App\Models\HistorialAccion;
+use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
 
 class SalidaController extends Controller
@@ -59,6 +60,10 @@ class SalidaController extends Controller
 
     public function create()
     {
+        if (!Modulo::canMod("salidas", "crear")) {
+            abort(401, "No tienes permiso para ver este modulo");
+        }
+
         $empresa = Empresa::first();
 
         $productos = Producto::where('status', '=', 1)->get();
