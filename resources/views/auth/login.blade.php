@@ -12,14 +12,14 @@
 
         .card {
             margin-top: -19.5px;
-            background: #e10000;
+            background: #44A047;
             color: #002442;
-            box-shadow: 0px 0px 20px 0px #ff0000;
+            box-shadow: 0px 0px 20px 0px #44A047;
         }
 
         #sign_in .input-group span i {
             font-size: 2em;
-            color: #dadada;
+            color: #ffffff;
             /* color:#19314D; */
         }
 
@@ -30,21 +30,26 @@
         #sign_in .msg {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-weight: bold;
-            color: #dadada;
+            color: #ffffff;
         }
 
         .logo {
-            box-shadow: 0px 0px 20px 0px #ff0000;
-            background: #e10000;
+            box-shadow: 0px 0px 20px 0px #44A047;
+            background: #44A047;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 5px;
+            color: white;
+        }
+
+        .login-page {
+            background: #FFF9C5;
         }
 
         .login-page .login-box .logo a {
-            color: #dadada;
+            color: #ffffff;
             font-family: 'Courier New', Courier, monospace;
             font-weight: 600;
         }
@@ -102,8 +107,8 @@
                         @endif
                     </div>
                     <div class="row">
-                        <div class="col-xs-8 col-xs-offset-2">
-                            <button class="btn btn-block bg-blue waves-effect" type="submit">ACCEDER</button>
+                        <div class="col-md-10 col-md-offset-1">
+                            <button class="btn btn-block bg-success waves-effect d-block" type="submit">ACCEDER</button>
                         </div>
                     </div>
                 </form>

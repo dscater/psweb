@@ -24,7 +24,7 @@
     @yield('css')
 </head>
 
-<body class="login-page" style="background:url('{{asset('imgs/empresa/fondo_azul.jpg')}}');background-repeat: no-repeat; background-size: 100%;">
+<body class="login-page" style="background-repeat: no-repeat; background-size: 100%;">
 
     @yield('content')
     <!-- Jquery Core Js -->

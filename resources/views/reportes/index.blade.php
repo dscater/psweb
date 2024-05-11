@@ -61,31 +61,31 @@
                     <div class="body">
                         <div class="row">
                             <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_maestroProductos" class="btn btn-primary">
+                                <a href="#" data-toggle="modal" data-target="#m_maestroProductos" class="btn btn-success">
                                     <i class="fa fa-file-invoice"></i>
                                     <span>Maestro de productos</span>
                                 </a>
                             </div>
                             <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_ingresosProductos" class="btn btn-primary">
+                                <a href="#" data-toggle="modal" data-target="#m_ingresosProductos" class="btn btn-success">
                                     <i class="fa fa-file-invoice"></i>
                                     <span>Ingresos de productos</span>
                                 </a>
                             </div>
                             <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_salidasProductos" class="btn btn-primary">
+                                <a href="#" data-toggle="modal" data-target="#m_salidasProductos" class="btn btn-success">
                                     <i class="fa fa-file-invoice"></i>
                                     <span>Salidas de productos</span>
                                 </a>
                             </div>
                             <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_kardexInventario" class="btn btn-primary">
+                                <a href="#" data-toggle="modal" data-target="#m_kardexInventario" class="btn btn-success">
                                     <i class="fa fa-file-invoice"></i>
                                     <span>Kardex de inventario</span>
                                 </a>
                             </div>
                             <div class="col-md-4 reporte">
-                                <a href="#" data-toggle="modal" data-target="#m_movimientoProductos" class="btn btn-primary">
+                                <a href="#" data-toggle="modal" data-target="#m_movimientoProductos" class="btn btn-success">
                                     <i class="fa fa-file-invoice"></i>
                                     <span>Movimiento de productos</span>
                                 </a>

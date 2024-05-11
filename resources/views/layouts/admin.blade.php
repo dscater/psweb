@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>IVORFID</title>
+    <title>{{ App\Models\Empresa::first()->name }}</title>
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="{{ asset('google-fonts/roboto.css') }}">
@@ -89,10 +89,27 @@
             font-weight: bold;
             color: #4E9F18 !important;
         }
+
+        .theme-green .navbar {
+            background: #44A047;
+        }
+
+        .sidebar .user-info {
+            background: #f0a400;
+            color: white;
+        }
+
+        body {
+            background: #FFF9C5;
+        }
+
+        .content {
+            min-height: calc(100vh -100px);
+        }
     </style>
 </head>
 
-<body class="theme-red">
+<body class="theme-green">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -230,10 +247,11 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2019 <a href="javascript:void(0);">IVORFID</a>.
+                    &copy; {{ date('Y') }} <a
+                        href="javascript:void(0);">{{ App\Models\Empresa::first()->name }}</a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1.0.6
+                    <b>Version: </b> 2.0.0
                 </div>
             </div>
             <!-- #Footer -->

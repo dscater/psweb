@@ -1,6 +1,6 @@
 <div class="modal fade in" id="m_kardexInventario" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content modal-col-light-blue">
+        <div class="modal-content modal-col-green">
             <div class="modal-header">
                 <h4 class="modal-title" id="defaultModalLabel">KARDEX DE INVENTARIO</h4>
             </div>

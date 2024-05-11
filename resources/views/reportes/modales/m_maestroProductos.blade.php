@@ -1,6 +1,6 @@
 <div class="modal fade in" id="m_maestroProductos" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content modal-col-light-blue">
+        <div class="modal-content modal-col-green">
             <div class="modal-header">
                 <h4 class="modal-title" id="defaultModalLabel">MAESTRO DE PRODUCTOS</h4>
             </div>
