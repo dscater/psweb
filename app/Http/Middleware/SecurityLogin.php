@@ -6,6 +6,7 @@ use App\Models\NotificacionUser;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,14 @@ class SecurityLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $cadena = $request->getUri() . " " . $request->name . " " . $request->password;
+        // Log::debug($request->route()->getName());
+
+        $name_route = $request->route()->getName();
+        if ($name_route == 'login') {
+            $cadena = $request->getUri() . " " . $request->name . " " . $request->password;
+        } else {
+            $cadena = $request->getUri();
+        }
         $cadenas = ["where", "select", "*", "users", "user", "from", "db", "root"];
 
         $clientIp = $request->ip();
@@ -39,7 +47,14 @@ class SecurityLogin
                 Session::put($blockedIpKey, time());
                 Session::save();
                 // CREAR NOTIFICACION
-                $user = User::where("name", $request->name)->get()->first();
+                $user = null;
+                if (Auth::check()) {
+                    $user = Auth::user();
+                    Auth::logout();
+                } else {
+                    if (isset($request->name))
+                        $user = User::where("name", $request->name)->get()->first();
+                }
                 if ($user) {
                     $fecha = date("d/m/Y");
                     $hora = date("H:i:s");

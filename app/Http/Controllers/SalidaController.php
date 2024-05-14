@@ -14,6 +14,7 @@ use App\Models\Empresa;
 use App\Models\HistorialAccion;
 use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SalidaController extends Controller
 {
@@ -32,11 +33,11 @@ class SalidaController extends Controller
 
     public function obtieneStock(Request $request)
     {
-        $comprueba = ProductoRfid::where('rfid', '=', $request->rfid)->get();
-        if (count($comprueba) > 0) {
-            $producto_rfid = ProductoRfid::where('rfid', '=', $request->rfid)->get()->first();
-            $stock = $producto_rfid->producto->stock->cant_actual;
-            $producto = $producto_rfid->producto;
+        // $comprueba = ProductoRfid::where('rfid', '=', $request->rfid)->get();
+        $producto = Producto::where('cod_unico', '=', $request->rfid)->get()->first();
+        if ($producto) {
+            $stock = $producto->stock->cant_actual;
+            $producto = $producto;
 
             $id = $producto->id;
             $nombre = $producto->nom;
@@ -86,62 +87,46 @@ class SalidaController extends Controller
     {
         DB::beginTransaction();
         try {
-            $comprueba = Producto::where('id', '=', $request->id)->get();
-            if (count($comprueba) > 0) {
-                // ACTUALIZAR EL ESTADO DEL PRODUCTO RFID
-                $comprueba_rfid = ProductoRfid::where('rfid', '=', $request->rfid)
-                    ->where('estado', '=', 'ALMACEN')
-                    ->get();
-                if (count($comprueba_rfid) > 0) {
-                    $producto = Producto::find($request->id);
-                    // REGISTRAR LA SALIDA
-                    $salida = new Salida();
-                    $salida->tipo_nom = $request->tipo;
-                    $salida->producto_id = $producto->id;
-                    $salida->user_id = Auth::user()->id;
-                    $salida->precio_uni = $request->precio_uni;
-                    $salida->cantidad = 1;
-                    $salida->descripcion = mb_strtoupper($request->descripcion);
-                    $salida->fecha_salida = date('Y-m-d');
-                    if ($salida->save()) {
-                        $producto_rfid = ProductoRfid::where('rfid', '=', $request->rfid)
-                            ->where('estado', '=', 'ALMACEN')
-                            ->get()->first();
-                        $producto_rfid->estado = 'SALIDA';
-                        $producto_rfid->save();
-                        // ACTUALIZAR STOCK
-                        $cant_actual = $producto->stock->cant_actual;
-                        $cant_salidas = $producto->stock->cant_salidas;
-                        $producto->stock->cant_actual = $cant_actual - 1;
-                        $producto->stock->cant_salidas = $cant_salidas + 1;
-                        $producto->stock->save();
+            $producto = Producto::find($request->id);
+            if ($producto) {
+                // REGISTRAR LA SALIDA
+                $salida = new Salida();
+                $salida->tipo_nom = $request->tipo;
+                $salida->producto_id = $producto->id;
+                $salida->user_id = Auth::user()->id;
+                $salida->precio_uni = $request->precio_uni;
+                $salida->cantidad = $request->cantidad;
+                $salida->descripcion = mb_strtoupper($request->descripcion);
+                $salida->fecha_salida = date('Y-m-d');
+                if ($salida->save()) {
+                    // ACTUALIZAR STOCK
+                    $cant_actual = $producto->stock->cant_actual;
+                    $cant_salidas = $producto->stock->cant_salidas;
+                    $producto->stock->cant_actual = $cant_actual - (float)$request->cantidad;
+                    $producto->stock->cant_salidas = $cant_salidas + (float)$request->cantidad;
+                    $producto->stock->save();
 
-                        $datos_original = HistorialAccion::getDetalleRegistro($salida, "salidas");
-                        HistorialAccion::create([
-                            'user_id' => Auth::user()->id,
-                            'accion' => 'CREACIÓN',
-                            'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UNA SALIDA',
-                            'datos_original' => $datos_original,
-                            'modulo' => 'SALIDAS',
-                            'fecha' => date('Y-m-d'),
-                            'hora' => date('H:i:s')
-                        ]);
+                    $datos_original = HistorialAccion::getDetalleRegistro($salida, "salidas");
+                    HistorialAccion::create([
+                        'user_id' => Auth::user()->id,
+                        'accion' => 'CREACIÓN',
+                        'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UNA SALIDA',
+                        'datos_original' => $datos_original,
+                        'modulo' => 'SALIDAS',
+                        'fecha' => date('Y-m-d'),
+                        'hora' => date('H:i:s')
+                    ]);
 
-                        // registrar accion usuario
-                        AccionUser::registrarAccion("salidas", "crear");
+                    // registrar accion usuario
+                    AccionUser::registrarAccion("salidas", "crear");
 
-                        DB::commit();
-                        return response()->JSON([
-                            'msg' => "BIEN"
-                        ]);
-                    } else {
-                        return response()->JSON([
-                            'msg' => "MAL"
-                        ]);
-                    }
+                    DB::commit();
+                    return response()->JSON([
+                        'msg' => "BIEN"
+                    ]);
                 } else {
                     return response()->JSON([
-                        'msg' => "NO EXISTE"
+                        'msg' => "MAL"
                     ]);
                 }
             } else {
@@ -150,6 +135,7 @@ class SalidaController extends Controller
                 ]);
             }
         } catch (\Exception $e) {
+            Log::debug($e->getMessage());
             DB::rollBack();
             return response()->JSON([
                 'msg' => "MAL"

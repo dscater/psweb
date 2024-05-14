@@ -15,6 +15,7 @@ use App\Models\Empresa;
 use App\Models\HistorialAccion;
 use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class IngresoController extends Controller
 {
@@ -38,16 +39,19 @@ class IngresoController extends Controller
         if (!empty($producto)) {
             $stock = $stock->cant_actual;
             $nombre = $producto[0]->nom;
+            $cod_unico = $producto[0]->cod_unico;
             $imagen = $producto[0]->imagen;
             $precio = number_format($producto[0]->precio, 2, '.', ',');
         } else {
             $stock = "0";
+            $cod_unico = "";
             $nombre = "GRUPO";
             $imagen = "producto_default.png";
             $precio = "0.00";
         }
         return response()->JSON([
             'stock' => $stock,
+            'cod_unico' => $cod_unico,
             'nombre' => $nombre,
             'imagen' => $imagen,
             'precio' => $precio,
@@ -83,66 +87,58 @@ class IngresoController extends Controller
         DB::beginTransaction();
         try {
             $producto = Producto::find($request->id);
-            $existe = ProductoRfid::where('rfid', '=', $request->rfid)->get();
-            if (count($existe) > 0) {
-                return response()->JSON([
-                    'msg' => "EXISTE"
-                ]);
-            } else {
-                // AGREGAR EL NUEVO PRODUCTO EN LA TABLA PRODUCTORFID
-                $producto_rfid = new ProductoRfid();
-                $producto_rfid->rfid = $request->rfid;
-                $producto_rfid->producto_id = $request->id;
-                $producto_rfid->estado = 'ALMACEN';
-                if ($producto_rfid->save()) {
+            // if (count($existe) > 0) {
+            //     return response()->JSON([
+            //         'msg' => "EXISTE"
+            //     ]);
+            // } else {
+            // AGREGAR EL NUEVO PRODUCTO EN LA TABLA PRODUCTORFID
 
-                    // ACTUALIZAMOS EL STOCK
-                    $cant_actual = $producto->stock->cant_actual;
-                    $cant_ingresos = $producto->stock->cant_ingresos;
-                    $producto->stock->cant_actual = $cant_actual + 1;
-                    $producto->stock->cant_ingresos = $cant_ingresos + 1;
-                    $producto->stock->fecha_movimiento = date('Y-m-d');
-                    $producto->stock->save();
-                    // REGISTRAR EL INGRESO
-                    $ingreso = new Ingreso();
-                    $ingreso->tipo_nom = $request->tipo;
-                    $ingreso->proveedor_id = $producto->proveedor_id;
-                    $ingreso->producto_id = $producto->id;
-                    $ingreso->user_id = Auth::user()->id;
-                    $ingreso->precio_uni = $request->precio_uni;
-                    $ingreso->cantidad = 1;
-                    $ingreso->precio_total = $request->precio_uni;
-                    $ingreso->descripcion = $request->tipo;
-                    $ingreso->codigo = mb_strtoupper($request->codigo);
-                    $ingreso->nro_aut = $producto->proveedor->numa_pro_p;
-                    $ingreso->nro_fac = mb_strtoupper($request->nro_fac);
-                    $ingreso->nro_rec = mb_strtoupper($request->nro_rec);
-                    $ingreso->fecha_ingreso = date('Y-m-d');
-                    $ingreso->save();
 
-                    $datos_original = HistorialAccion::getDetalleRegistro($ingreso, "ingresos");
-                    HistorialAccion::create([
-                        'user_id' => Auth::user()->id,
-                        'accion' => 'CREACIÓN',
-                        'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UN INGRESO',
-                        'datos_original' => $datos_original,
-                        'modulo' => 'INGRESOS',
-                        'fecha' => date('Y-m-d'),
-                        'hora' => date('H:i:s')
-                    ]);
-                    // registrar accion usuario
-                    AccionUser::registrarAccion("ingresos", "crear");
-                    DB::commit();
-                    return response()->JSON([
-                        'msg' => "BIEN",
-                    ]);
-                } else {
-                    return response()->JSON([
-                        'msg' => "MAL"
-                    ]);
-                }
-            }
+            // ACTUALIZAMOS EL STOCK
+            $cant_actual = $producto->stock->cant_actual;
+            $cant_ingresos = $producto->stock->cant_ingresos;
+            $producto->stock->cant_actual = $cant_actual + (float)$request->cantidad;
+            $producto->stock->cant_ingresos = $cant_ingresos + (float)$request->cantidad;
+            $producto->stock->fecha_movimiento = date('Y-m-d');
+            $producto->stock->save();
+            // REGISTRAR EL INGRESO
+            $ingreso = new Ingreso();
+            $ingreso->tipo_nom = $request->tipo;
+            $ingreso->proveedor_id = $producto->proveedor_id;
+            $ingreso->producto_id = $producto->id;
+            $ingreso->user_id = Auth::user()->id;
+            $ingreso->precio_uni = $request->precio_uni;
+            $ingreso->cantidad = $request->cantidad;
+            $ingreso->precio_total = $request->precio_uni;
+            $ingreso->descripcion = $request->tipo;
+            $ingreso->codigo = mb_strtoupper($request->codigo);
+            $ingreso->nro_aut = $producto->proveedor->numa_pro_p;
+            $ingreso->nro_fac = mb_strtoupper($request->nro_fac);
+            $ingreso->nro_rec = mb_strtoupper($request->nro_rec);
+            $ingreso->fecha_ingreso = date('Y-m-d');
+            $ingreso->save();
+
+            $datos_original = HistorialAccion::getDetalleRegistro($ingreso, "ingresos");
+            HistorialAccion::create([
+                'user_id' => Auth::user()->id,
+                'accion' => 'CREACIÓN',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->name . ' REGISTRO UN INGRESO',
+                'datos_original' => $datos_original,
+                'modulo' => 'INGRESOS',
+                'fecha' => date('Y-m-d'),
+                'hora' => date('H:i:s')
+            ]);
+            // registrar accion usuario
+            AccionUser::registrarAccion("ingresos", "crear");
+            DB::commit();
+            return response()->JSON([
+                'msg' => "BIEN",
+                "cantidad" => $request->cantidad
+            ]);
+            // }
         } catch (\Exception $e) {
+            Log::debug($e->getMessage());
             DB::rollBack();
             return response()->JSON([
                 'msg' => "MAL"

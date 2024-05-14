@@ -111,7 +111,7 @@
                                 'files' => 'true',
                                 'id' => 'form_validation',
                             ]) !!}
-                            @include('tipo_ingreso_salida.forms.form')
+                            @include('tipos_is.forms.form')
                             <button class="btn btn-primary btn-lg waves-effect" type="submit"><i
                                     class="material-icons">save</i><span>GUARDAR</span></button>
                             {!! Form::close() !!}

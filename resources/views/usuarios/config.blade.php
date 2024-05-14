@@ -89,7 +89,7 @@
                         <img id="imagen_p" src="{{ asset('imgs/users/'.$user->foto) }}" alt="Imagen de perfil" width="128px" height="128px" />
                         </div>
                         <div class="content-area">
-                            {!! Form::open(['route'=>['users.config_update_foto',$user->id],'method'=>'POST','class'=>'form-horizontal','id'=>'form_foto']) !!}
+                            {!! Form::open(['route'=>['usuarios.config_update_foto',$user->id],'method'=>'POST','class'=>'form-horizontal','id'=>'form_foto']) !!}
                             <div class="col-md-12">
                                 <div class="form-line archivos">
                                     <label for="foto" class="subir">
@@ -118,7 +118,7 @@
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="change_password_settings">
-                                    {!! Form::open(['route'=>['users.config_update',$user->id],'method'=>'PUT','class'=>'form-horizontal','id'=>'form_val']) !!}
+                                    {!! Form::open(['route'=>['usuarios.config_update',$user->id],'method'=>'PUT','class'=>'form-horizontal','id'=>'form_val']) !!}
                                         <div class="form-group">
                                             <label for="OldPassword" class="col-sm-3 control-label">Antigua contraseña</label>
                                             <div class="col-sm-9">

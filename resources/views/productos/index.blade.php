@@ -109,6 +109,7 @@
                                     <thead>
                                         <tr>
                                             <th>Código</th>
+                                            <th>Código Único</th>
                                             <th>Nombre</th>
                                             <th>Precio</th>
                                             <th>Imagen</th>
@@ -116,13 +117,14 @@
                                             <th>Marca</th>
                                             <th>Medida</th>
                                             <th>Cantidad actual</th>
-                                            <th>Proveedor</th>
+                                            <th>Pyme</th>
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Código</th>
+                                            <th>Código Único</th>
                                             <th>Nombre</th>
                                             <th>Precio</th>
                                             <th>Imagen</th>
@@ -148,6 +150,7 @@
                                             @endphp
                                             <tr class="{{ $clase }}">
                                                 <td>{{ $producto->cod }}</td>
+                                                <td>{{ $producto->cod_unico }}</td>
                                                 <td>{{ $producto->nom }}</td>
                                                 <td>{{ $producto->precio }}</td>
                                                 <td><img src="{{ asset('imgs/productos/' . $producto->imagen) }}"

@@ -14,6 +14,7 @@ use App\Models\Empresa;
 use App\Models\HistorialAccion;
 use App\Models\Modulo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class MarcaController extends Controller
 {
@@ -114,7 +115,7 @@ class MarcaController extends Controller
     {
         DB::beginTransaction();
         try {
-            $existe_uso = Producto::where('marca', '=', $marca->nom)->get();
+            $existe_uso = Producto::where('marca_id', '=', $marca->id)->get();
             if (count($existe_uso) == 0) {
                 $datos_original = HistorialAccion::getDetalleRegistro($marca, "marcas");
                 $marca->delete();
@@ -139,6 +140,7 @@ class MarcaController extends Controller
                 ]);
             }
         } catch (\Exception $e) {
+            Log::debug($e->getMessage());
             DB::rollBack();
             return response()->JSON([
                 'msg' => 'error',

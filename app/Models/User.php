@@ -208,9 +208,12 @@ class User extends Authenticatable
                 12, //Usuarios y Roles
                 13, //Autentiación Segura
                 14, //Autorización Adecuada
-                15, // Auditoría y registros de eventos
-                16, // Respaldo y Recuperación
-                17, // Capacitación en Seguridad
+                15, //Prevención de ataques
+                16, // Auditoría y registros de eventos
+                17, // Alertas y notificaciones
+                18, // Respaldo y Recuperación
+                19, // Escaneo de vulnerabilidades
+                20, // Capacitación en Seguridad
             ],
         ];
 

@@ -217,7 +217,7 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="{{ route('users.config', Auth::user()->id) }}"><i
+                            <li><a href="{{ route('usuarios.config', Auth::user()->id) }}"><i
                                         class="material-icons">person</i>Perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li>

@@ -1,28 +1,26 @@
 @extends('layouts.admin')
 
 @section('css')
+    <!-- Waves Effect Css -->
+    <link href="{{ asset('AdminBSBMaterialDesign-master/plugins/node-waves/waves.css') }}" rel="stylesheet" />
 
-<!-- Waves Effect Css -->
-<link href="{{ asset('AdminBSBMaterialDesign-master/plugins/node-waves/waves.css') }}" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="{{ asset('AdminBSBMaterialDesign-master/plugins/animate-css/animate.css') }}" rel="stylesheet" />
 
-<!-- Animation Css -->
-<link href="{{ asset('AdminBSBMaterialDesign-master/plugins/animate-css/animate.css') }}" rel="stylesheet" />
-
-<!-- Morris Chart Css-->
-<style>
-.nombre_empresa{
-    width: 100%;
-    text-align: center;
-    font-weight: 900;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color:#ff0000;
-}
-</style>
-
+    <!-- Morris Chart Css-->
+    <style>
+        .nombre_empresa {
+            width: 100%;
+            text-align: center;
+            font-weight: 900;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #ff0000;
+        }
+    </style>
 @endsection
 
 @section('nom_empresa')
-{{ $empresa->name }}
+    {{ $empresa->name }}
 @endsection
 
 @section('content')
@@ -30,18 +28,21 @@
         <div class="container-fluid">
             <div class="row-fixed">
                 <h2 class="nombre_empresa">
-                    {{$empresa->name}}
+                    {{ $empresa->name }}
                 </h2>
             </div>
             <div class="block-header">
                 <h2>TABLERO</h2>
             </div>
             <!-- Widgets -->
-            @if(Auth::user()->tipo == 'ADMINISTRADOR')
-            @include('includes.home_admin')
+            @if (Auth::user()->tipo == 'ADMINISTRADOR')
+                @include('includes.home_admin')
             @endif
-            @if(Auth::user()->tipo == 'ALMACENERO')
-            @include('includes.home_almacenero')
+            @if (Auth::user()->tipo == 'ALMACENERO')
+                @include('includes.home_almacenero')
+            @endif
+            @if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD')
+                @include('includes.home_supervisor')
             @endif
             <!-- #END# Widgets -->
         </div>
@@ -49,44 +50,44 @@
 @endsection
 
 @section('scripts')
+    <!-- Select Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 
- <!-- Select Plugin Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 
- <!-- Slimscroll Plugin Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/bootstrap-notify/bootstrap-notify.js') }}"></script>
 
-<!-- Bootstrap Notify Plugin Js -->
-<script src="{{ asset('AdminBSBMaterialDesign-master/plugins/bootstrap-notify/bootstrap-notify.js') }}"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/node-waves/waves.js') }}"></script>
 
- <!-- Waves Effect Plugin Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/node-waves/waves.js')}}"></script>
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/jquery-countto/jquery.countTo.js') }}"></script>
 
- <!-- Jquery CountTo Plugin Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/jquery-countto/jquery.countTo.js')}}"></script>
+    <!-- Morris Plugin Js -->
 
- <!-- Morris Plugin Js -->
+    <!-- ChartJs -->
+    {{-- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/chartjs/Chart.bundle.js')}}"></script> --}}
 
- <!-- ChartJs -->
- {{-- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/chartjs/Chart.bundle.js')}}"></script> --}}
+    <!-- Flot Charts Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.js') }}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.categories.js') }}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.time.js') }}"></script>
 
- <!-- Flot Charts Plugin Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.js')}}"></script>
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.resize.js')}}"></script>
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.pie.js')}}"></script>
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.categories.js')}}"></script>
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.time.js')}}"></script>
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
 
- <!-- Sparkline Chart Plugin Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/plugins/jquery-sparkline/jquery.sparkline.js')}}"></script>
+    <!-- Custom Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-master/js/admin.js') }}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/index.js') }}"></script>
+    <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/ui/notifications.js') }}"></script>
 
- <!-- Custom Js -->
- <script src="{{asset('AdminBSBMaterialDesign-master/js/admin.js')}}"></script>
- <script src="{{asset('AdminBSBMaterialDesign-master/js/pages/index.js')}}"></script>
- <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/ui/notifications.js') }}"></script>
-
-<script>
-    showNotification('alert-success', 'BIENVENIDO AL SISTEMA IVORFID.','top', 'center', 'animated bounceInTop', 'animated bounceOutLeft');
-</script>
-
+    <script>
+        // showNotification('alert-success', 'BIENVENIDO AL SISTEMA {{ App\Models\Empresa::first() ? App\Models\Empresa::first()->name : 'PSWEB' }}.','top', 'center', 'animated bounceInTop', 'animated bounceOutLeft');
+        showNotification('alert-success', 'BIENVENIDO AL SISTEMA PSWEB.', 'top', 'center', 'animated bounceInTop',
+            'animated bounceOutLeft');
+    </script>
 @endsection

@@ -117,7 +117,7 @@ class TipoController extends Controller
     {
         DB::beginTransaction();
         try {
-            $existe_uso = Producto::where('tipo', '=', $tipo->nom)->get();
+            $existe_uso = Producto::where('tipo_id', '=', $tipo->id)->get();
             if (count($existe_uso) == 0) {
                 $datos_original = HistorialAccion::getDetalleRegistro($tipo, "tipos");
                 $tipo->delete();

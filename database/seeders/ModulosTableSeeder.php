@@ -16,9 +16,9 @@ class ModulosTableSeeder extends Seeder
         // 1
         Modulo::create([
             "titulo" => "Usuarios",
-            "url" => "users",
+            "url" => "usuarios",
             "icon" => "people",
-            "slug" => "users.index",
+            "slug" => "usuarios.index",
         ]);
 
         // 2
@@ -126,13 +126,29 @@ class ModulosTableSeeder extends Seeder
 
         // 15
         Modulo::create([
+            "titulo" => "Prevención de ataques",
+            "url" => "prevencion_ataques",
+            "icon" => "view_list",
+            "slug" => "prevencion_ataques.index",
+        ]);
+
+        // 16
+        Modulo::create([
             "titulo" => "Auditoría y registros de eventos",
             "url" => "auditoria_eventos",
             "icon" => "view_list",
             "slug" => "auditoria_eventos.index",
         ]);
 
-        // 16
+        // 17
+        Modulo::create([
+            "titulo" => "Alertas y notificaciones",
+            "url" => "alertas_notificacions",
+            "icon" => "view_list",
+            "slug" => "alertas_notificacions.index",
+        ]);
+
+        // 18
         Modulo::create([
             "titulo" => "Respaldo y Recuperación",
             "url" => "respaldo_recuperacion",
@@ -140,7 +156,15 @@ class ModulosTableSeeder extends Seeder
             "slug" => "respaldo_recuperacion.index",
         ]);
 
-        // 17
+        // 19
+        Modulo::create([
+            "titulo" => "Escaneo de vulnerabilidades",
+            "url" => "escaneo_vulnerabilidads",
+            "icon" => "view_list",
+            "slug" => "escaneo_vulnerabilidads.index",
+        ]);
+
+        // 20
         Modulo::create([
             "titulo" => "Capacitación en Seguridad",
             "url" => "capacitacion_seguridads",

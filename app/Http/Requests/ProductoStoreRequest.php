@@ -25,6 +25,7 @@ class ProductoStoreRequest extends FormRequest
     {
         return [
             'nom' => 'unique:productos,nom',
+            'cod_unico' => 'unique:productos,cod_unico',
         ];
     }
 
@@ -32,6 +33,7 @@ class ProductoStoreRequest extends FormRequest
     {
         return [
             'nom.unique' => 'Este nombre de producto ya existe.',
+            'cod_unico.unique' => 'Este código ya fue registrado.',
         ];
     }
 }

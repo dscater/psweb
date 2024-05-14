@@ -54,31 +54,31 @@ Route::middleware(['security.login', 'throttle.login'])->group(function () {
 Route::post("/logout", [LoginController::class, 'logout'])->name("logout");
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'security.login'])->group(function () {
     // HOME
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // USUARIOS
-    Route::get('users', [DatosUsuarioController::class, 'index'])->name('users.index');
+    Route::get('usuarios', [DatosUsuarioController::class, 'index'])->name('usuarios.index');
 
-    Route::get('users/create', [DatosUsuarioController::class, 'create'])->name('users.create');
+    Route::get('usuarios/create', [DatosUsuarioController::class, 'create'])->name('usuarios.create');
 
-    Route::get('users/show/{datosUsuario}', [DatosUsuarioController::class, 'show'])->name('users.show');
+    Route::get('usuarios/show/{datosUsuario}', [DatosUsuarioController::class, 'show'])->name('usuarios.show');
 
-    Route::get('users/edit/{datosUsuario}', [DatosUsuarioController::class, 'edit'])->name('users.edit');
+    Route::get('usuarios/edit/{datosUsuario}', [DatosUsuarioController::class, 'edit'])->name('usuarios.edit');
 
-    Route::post('users/store', [DatosUsuarioController::class, 'store'])->name('users.store');
+    Route::post('usuarios/store', [DatosUsuarioController::class, 'store'])->name('usuarios.store');
 
-    Route::put('users/update/{datosUsuario}', [DatosUsuarioController::class, 'update'])->name('users.update');
+    Route::put('usuarios/update/{datosUsuario}', [DatosUsuarioController::class, 'update'])->name('usuarios.update');
 
-    Route::delete('users/destroy/{user}', [DatosUsuarioController::class, 'destroy'])->name('users.destroy');
+    Route::delete('usuarios/destroy/{user}', [DatosUsuarioController::class, 'destroy'])->name('usuarios.destroy');
 
     // Configuración de cuenta
     // contraseña
-    Route::GET('users/configurar/cuenta/{user}', [DatosUsuarioController::class, 'config_cuenta'])->name('users.config');
-    Route::PUT('users/configurar/cuenta/update/{user}', [DatosUsuarioController::class, 'cuenta_update'])->name('users.config_update');
+    Route::GET('usuarios/configurar/cuenta/{user}', [DatosUsuarioController::class, 'config_cuenta'])->name('usuarios.config');
+    Route::PUT('usuarios/configurar/cuenta/update/{user}', [DatosUsuarioController::class, 'cuenta_update'])->name('usuarios.config_update');
     // foto de perfil
-    Route::POST('users/configurar/cuenta/update/foto/{user}', [DatosUsuarioController::class, 'cuenta_update_foto'])->name('users.config_update_foto');
+    Route::POST('usuarios/configurar/cuenta/update/foto/{user}', [DatosUsuarioController::class, 'cuenta_update_foto'])->name('usuarios.config_update_foto');
 
     // PROVEEDORES
     Route::get('pymes', [ProveedorController::class, 'index'])->name('pymes.index');
@@ -232,6 +232,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('autenticacion_seguras/update/{tipo}', [AutenticacionSeguraController::class, 'update'])->name('autenticacion_seguras.update');
 
+    Route::get('autenticacion_seguras/notificacion/{user}', [AutenticacionSeguraController::class, 'notificacion'])->name('autenticacion_seguras.notificacion');
+
     Route::delete('autenticacion_seguras/destroy/{tipo}', [AutenticacionSeguraController::class, 'destroy'])->name('autenticacion_seguras.destroy');
 
     // AUTENTICACION ADECUADA
@@ -249,7 +251,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('autenticacion_adecuadas/destroy/{tipo}', [AutenticacionAdecuadaController::class, 'destroy'])->name('autenticacion_adecuadas.destroy');
 
-    // PREVENCION ATAQUES
+    // PREVENCIÓN ATAQUES
     Route::get('prevencion_ataques', [PrevencionAtaqueController::class, 'index'])->name('prevencion_ataques.index');
 
     Route::get('prevencion_ataques/create', [PrevencionAtaqueController::class, 'create'])->name('prevencion_ataques.create');
@@ -264,7 +266,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('prevencion_ataques/destroy/{tipo}', [PrevencionAtaqueController::class, 'destroy'])->name('prevencion_ataques.destroy');
 
-    // PREVENCION ATAQUES
+    // AUDITORIA EVENTOS
     Route::get('auditoria_eventos', [AuditoriaEventoController::class, 'index'])->name('auditoria_eventos.index');
 
     Route::get('auditoria_eventos/create', [AuditoriaEventoController::class, 'create'])->name('auditoria_eventos.create');
@@ -279,7 +281,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('auditoria_eventos/destroy/{tipo}', [AuditoriaEventoController::class, 'destroy'])->name('auditoria_eventos.destroy');
 
-    // PREVENCION ATAQUES
+    // ALERTAS Y NOTIFICACIONES
     Route::get('alertas_notificacions', [AlertaNotificacionController::class, 'index'])->name('alertas_notificacions.index');
 
     Route::get('alertas_notificacions/create', [AlertaNotificacionController::class, 'create'])->name('alertas_notificacions.create');
@@ -345,6 +347,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('eventos_seguridads', [EventoSeguridadController::class, 'index'])->name('eventos_seguridads.index');
     Route::get('eventos_seguridads/byUser', [EventoSeguridadController::class, 'byUser'])->name('eventos_seguridads.byUser');
     Route::get('eventos_seguridads/show/{notificacion_user}', [EventoSeguridadController::class, 'show'])->name('eventos_seguridads.show');
+
+    Route::get('eventos_seguridads/gestion_roles', [EventoSeguridadController::class, 'gestion_roles'])->name('eventos_seguridads.gestion_roles');
+    Route::get('eventos_seguridads/autenticacion_seguras', [EventoSeguridadController::class, 'autenticacion_seguras'])->name('eventos_seguridads.autenticacion_seguras');
+    Route::get('eventos_seguridads/autorizacion_adecuadas', [EventoSeguridadController::class, 'autorizacion_adecuadas'])->name('eventos_seguridads.autorizacion_adecuadas');
+    Route::get('eventos_seguridads/prevension_ataques', [EventoSeguridadController::class, 'prevension_ataques'])->name('eventos_seguridads.prevension_ataques');
+    Route::get('eventos_seguridads/alertas_notificaciones', [EventoSeguridadController::class, 'alertas_notificaciones'])->name('eventos_seguridads.alertas_notificaciones');
+    Route::get('eventos_seguridads/escaneo_vulnerabilidades', [EventoSeguridadController::class, 'escaneo_vulnerabilidades'])->name('eventos_seguridads.escaneo_vulnerabilidades');
+    Route::get('eventos_seguridads/capacitacion_seguridads', [EventoSeguridadController::class, 'capacitacion_seguridads'])->name('eventos_seguridads.capacitacion_seguridads');
 
     // REPORTES
     Route::get('reportes', [ReporteController::class, 'index'])->name('reportes.index');

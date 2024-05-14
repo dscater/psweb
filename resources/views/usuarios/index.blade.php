@@ -28,7 +28,7 @@
                 <div class="row clearfix">
                     @if (Auth::user()->verificaPermiso('users', 'crear'))
                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 botones">
-                            <a href="{{ route('users.create') }}" class="btn btn-primary"><i
+                            <a href="{{ route('usuarios.create') }}" class="btn btn-primary"><i
                                     class="material-icons">person_add</i><span>Nuevo usuario</span></a>
                         </div>
                     @endif
@@ -44,7 +44,7 @@
                             </h2>
                         </div>
                         <div class="body">
-                            <input type="text" name="url_lista" id="url_lista" value="{{ route('users.index') }}" hidden>
+                            <input type="text" name="url_lista" id="url_lista" value="{{ route('usuarios.index') }}" hidden>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
@@ -82,18 +82,18 @@
                                                 <td>
                                                     @if ($o_modulo::canMod('users', 'eliminar'))
                                                         <input type="text" name="eliminar" class="url_eliminar"
-                                                            value="{{ route('users.destroy', $user->user_id) }}" hidden>
+                                                            value="{{ route('usuarios.destroy', $user->user_id) }}" hidden>
                                                         <a href="#" title="Eliminar" class="eliminar"><i
                                                                 class="material-icons eliminar">delete</i>
                                                         </a>
                                                     @endif
 
                                                     @if ($o_modulo::canMod('users', 'editar'))
-                                                        <a href="{{ route('users.edit', $user->datos_id) }}"
+                                                        <a href="{{ route('usuarios.edit', $user->datos_id) }}"
                                                             title="Editar"><i class="material-icons editar">edit</i>
                                                         </a>
                                                     @endif
-                                                    {{-- <a href="{{ route('users.show',$user->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
+                                                    {{-- <a href="{{ route('usuarios.show',$user->datos_id) }}"><i class="material-icons">visibility</i></a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

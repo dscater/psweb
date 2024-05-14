@@ -6,34 +6,43 @@
         <div class="col-md-8">
             <div class="form-group form-float">
                 <div class="form-line">
-                    {{ Form::text('rfid',null,['class'=>'form-control','required','id'=>'rfid']) }}
+                    {{ Form::text('rfid', null, ['class' => 'form-control', 'required', 'id' => 'rfid']) }}
                     <label class="form-label">Código Único*</label>
                 </div>
-            </div> 
+                <div class="help-info">Presione Enter para buscar</div>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="form-group form-float">
                 <div class="form-line">
-                    {{ Form::number('precio_uni',null,['class'=>'form-control','required','id'=>'precio_uni']) }}
+                    {{ Form::number('precio_uni', null, ['class' => 'form-control', 'step' => '0.01', 'required', 'id' => 'precio_uni']) }}
                     <label class="form-label">Precio unitario*</label>
                 </div>
-            </div> 
+            </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-4">
             <div class="form-group form-float">
                 <div class="form-line">
-                    {{ Form::select('tipo',$array_tipos,null,['class'=>'form-control','required','id'=>'tipo']) }}
+                    {{ Form::number('cantidad', null, ['class' => 'form-control', 'step' => '0.01', 'required', 'id' => 'cantidad']) }}
+                    <label class="form-label">Cantidad de salida*</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group form-float">
+                <div class="form-line">
+                    {{ Form::select('tipo', $array_tipos, null, ['class' => 'form-control', 'required', 'id' => 'tipo']) }}
                     <label class="form-label" for="tipo">Tipo ingreso/salida*</label>
                 </div>
-            </div> 
+            </div>
         </div>
         <div class="col-md-12">
             <div class="form-group form-float">
                 <div class="form-line">
-                    {{ Form::textarea('descripcion',null,['class'=>'form-control','required','id'=>'descripcion','rows'=>'2']) }}
+                    {{ Form::textarea('descripcion', null, ['class' => 'form-control', 'required', 'id' => 'descripcion', 'rows' => '2']) }}
                     <label class="form-label">Descripción*</label>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
     <div class="col-md-6">
@@ -54,7 +63,8 @@
                                     <p><strong>PRECIO VENTA: </strong> <span id="p_venta">Bs. 0.00</span></p>
                                 </div>
                                 <div class="col-md-6 imagen">
-                                    <img src="{{asset('imgs/productos/producto_default.png')}}" alt="Imagen" class="imagen_prod" id="imagen_prod">
+                                    <img src="{{ asset('imgs/productos/producto_default.png') }}" alt="Imagen"
+                                        class="imagen_prod" id="imagen_prod">
                                 </div>
                             </div>
                         </div>
@@ -64,4 +74,3 @@
         </div>
     </div>
 </div>
-

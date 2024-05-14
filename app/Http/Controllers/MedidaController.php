@@ -114,7 +114,7 @@ class MedidaController extends Controller
     {
         DB::beginTransaction();
         try {
-            $existe_uso = Producto::where('medida', '=', $medida->simbolo)->get();
+            $existe_uso = Producto::where('medida_id', '=', $medida->id)->get();
             if (count($existe_uso) == 0) {
                 $datos_original = HistorialAccion::getDetalleRegistro($medida, "medidas");
                 $medida->delete();

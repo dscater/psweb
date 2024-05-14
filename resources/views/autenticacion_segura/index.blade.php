@@ -88,7 +88,9 @@
                                                     </td>
                                                     <td>
                                                         @if ($item->c_password != 'BUENA' || $item->c_password != 'FUERTE')
-                                                            <button>Enviar Notificación</button>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('autenticacion_seguras.notificacion', $item->id) }}">Enviar
+                                                                Notificación</a>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -150,5 +152,11 @@
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/admin.js') }}"></script>
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/ui/notifications.js') }}"></script>
-    <script></script>
+    <script>
+        @if (session('success'))
+            showNotification('alert-success', "{{ session('success') }}", 'top', 'right', 'animated bounceInRight',
+                'animated bounceOutRight');
+            // showSuccessMessage('Registro éxitoso','');
+        @endif
+    </script>
 @endsection

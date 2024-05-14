@@ -24,7 +24,8 @@ class ProductoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'unique:productos,nom,'.$this->producto->id,
+            'nom' => 'unique:productos,nom,' . $this->producto->id,
+            'cod_unico' => 'unique:productos,cod_unico,' . $this->producto->id,
         ];
     }
 
@@ -32,6 +33,7 @@ class ProductoUpdateRequest extends FormRequest
     {
         return [
             'nom.unique' => 'Este nombre de producto ya existe.',
+            'cod_unico.unique' => 'Este código ya fue registrado.',
         ];
     }
 }

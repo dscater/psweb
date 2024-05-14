@@ -84,7 +84,7 @@ max-width: 100%;
                         <small>Los campos con * son obligatorios.</small>
                     </div>
                     <div class="body">
-                        {!! Form::model($datosUsuario,['route'=>['users.update',$datosUsuario->id],'method'=>'put','files'=>'true','id'=>'form_validation']) !!}
+                        {!! Form::model($datosUsuario,['route'=>['usuarios.update',$datosUsuario->id],'method'=>'put','files'=>'true','id'=>'form_validation']) !!}
                             @include('usuarios.forms.form')
                             <button class="btn btn-primary btn-lg waves-effect" type="submit"><i class="material-icons">save</i><span>GUARDAR</span></button>
                     {!! Form::close() !!}

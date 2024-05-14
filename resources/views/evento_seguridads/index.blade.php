@@ -48,6 +48,15 @@
             color: white;
             background: green;
         }
+
+        .paginacion a,
+        .paginacion span {
+            color: black;
+        }
+
+        .paginacion span {
+            color: rgb(160, 160, 160);
+        }
     </style>
 @endsection
 
@@ -77,27 +86,7 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($gestion_roles as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="gestion_roles">
                                 </div>
                             </div>
                         </div>
@@ -110,27 +99,7 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($autenticacion_seguras as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="autenticacion_seguras">
                                 </div>
                             </div>
                         </div>
@@ -143,27 +112,7 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($autorizacion_adecuadas as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="autorizacion_adecuadas">
                                 </div>
                             </div>
                         </div>
@@ -176,27 +125,8 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($prevension_ataques as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="prevension_ataques">
+
                                 </div>
                             </div>
                         </div>
@@ -209,27 +139,7 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($alertas_notificaciones as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="alertas_notificaciones">
                                 </div>
                             </div>
                         </div>
@@ -242,27 +152,7 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($escaneo_vulnerabilidades as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="escaneo_vulnerabilidades">
                                 </div>
                             </div>
                         </div>
@@ -275,27 +165,7 @@
                         </div>
                         <div class="body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Fecha y Hora</th>
-                                                <th>Descripción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($capacitacion_seguridads as $item)
-                                                <tr class="{{ $item->visto == 0 ? 'sin_ver' : '' }}">
-                                                    <td><a href="{{ route('eventos_seguridads.show', $item->id) }}"
-                                                            class="btn btn-primary btn-xs rounded"><i
-                                                                class=material-icons>remove_red_eye</i></a></td>
-                                                    <td>{{ $item->fecha_hora }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-12" id="capacitacion_seguridads">
                                 </div>
                             </div>
                         </div>
@@ -351,5 +221,150 @@
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/admin.js') }}"></script>
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="{{ asset('AdminBSBMaterialDesign-master/js/pages/ui/notifications.js') }}"></script>
-    <script></script>
+    <script>
+        $(document).ready(function() {
+            gestion_roles();
+            autenticacion_seguras();
+            autorizacion_adecuadas();
+            prevension_ataques();
+            alertas_notificaciones();
+            escaneo_vulnerabilidades();
+            capacitacion_seguridads();
+
+            $("#gestion_roles").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                gestion_roles(array_url[1]);
+            })
+            $("#autenticacion_seguras").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                autenticacion_seguras(array_url[1]);
+            })
+            $("#autorizacion_adecuadas").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                autorizacion_adecuadas(array_url[1]);
+            })
+            $("#prevension_ataques").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                prevension_ataques(array_url[1]);
+            })
+            $("#alertas_notificaciones").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                alertas_notificaciones(array_url[1]);
+            })
+            $("#escaneo_vulnerabilidades").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                escaneo_vulnerabilidades(array_url[1]);
+            })
+            $("#capacitacion_seguridads").on("click", ".paginacion a", function(e) {
+                e.preventDefault();
+                let array_url = $(this).attr("href").split("=");
+                capacitacion_seguridads(array_url[1]);
+            })
+
+        });
+
+        function gestion_roles(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.gestion_roles') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#gestion_roles").html(response);
+                }
+            });
+        }
+
+        function autenticacion_seguras(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.autenticacion_seguras') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#autenticacion_seguras").html(response);
+                }
+            });
+        }
+
+        function autorizacion_adecuadas(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.autorizacion_adecuadas') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#autorizacion_adecuadas").html(response);
+                }
+            });
+        }
+
+        function prevension_ataques(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.prevension_ataques') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#prevension_ataques").html(response);
+                }
+            });
+        }
+
+        function alertas_notificaciones(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.alertas_notificaciones') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#alertas_notificaciones").html(response);
+                }
+            });
+        }
+
+        function escaneo_vulnerabilidades(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.escaneo_vulnerabilidades') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#escaneo_vulnerabilidades").html(response);
+                }
+            });
+        }
+
+        function capacitacion_seguridads(page = 1) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('eventos_seguridads.capacitacion_seguridads') }}",
+                data: {
+                    page: page
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#capacitacion_seguridads").html(response);
+                }
+            });
+        }
+    </script>
 @endsection

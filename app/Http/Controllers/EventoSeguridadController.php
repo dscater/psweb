@@ -10,29 +10,111 @@ class EventoSeguridadController extends Controller
 {
     public function index()
     {
-        $notificacion_users = NotificacionUser::where("user_id", Auth::user()->id)->orderBy("created_at", "desc")->paginate(10);
         if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
-            return view("evento_seguridads.supervisor", compact("notificacion_users"));
+            return view("evento_seguridads.supervisor2");
+        } else {
+            return view("evento_seguridads.index");
+        }
+    }
+
+    public function gestion_roles(Request $request)
+    {
+        $gestion_roles = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $gestion_roles = NotificacionUser::where("tipo", "GESTIÓN DE USUARIOS Y ROLES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.gestion_roles", compact("gestion_roles"))->render();
+        } else {
+            $gestion_roles = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "GESTIÓN DE USUARIOS Y ROLES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.gestion_roles", compact("gestion_roles"))->render();
         }
 
-        $gestion_roles = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "GESTIÓN DE USUARIOS Y ROLES")->orderBy("created_at", "desc")->get();
-        $autenticacion_seguras = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "AUTENTICACIÓN SEGURA")->orderBy("created_at", "desc")->get();
-        $autorizacion_adecuadas = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "AUTORIZACIÓN ADECUADA")->orderBy("created_at", "desc")->get();
-        $prevension_ataques = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "PREVENCIÓN DE ATAQUES")->orderBy("created_at", "desc")->get();
-        $alertas_notificaciones = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "ALERTAS Y NOTIFICACIONES")->orderBy("created_at", "desc")->get();
-        $escaneo_vulnerabilidades = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "ESCANEO DE VULNERABILIDADES")->orderBy("created_at", "desc")->get();
-        $capacitacion_seguridads = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "CAPACITACIÓN EN SEGURIDAD")->orderBy("created_at", "desc")->get();
-
-        return view("evento_seguridads.index", compact(
-            "gestion_roles",
-            "autenticacion_seguras",
-            "autorizacion_adecuadas",
-            "prevension_ataques",
-            "alertas_notificaciones",
-            "escaneo_vulnerabilidades",
-            "capacitacion_seguridads"
-        ));
+        return response()->JSON($html);
     }
+    public function autenticacion_seguras(Request $request)
+    {
+        $autenticacion_seguras = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $autenticacion_seguras = NotificacionUser::where("tipo", "AUTENTICACIÓN SEGURA")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.autenticacion_seguras", compact("autenticacion_seguras"))->render();
+        } else {
+            $autenticacion_seguras = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "AUTENTICACIÓN SEGURA")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.autenticacion_seguras", compact("autenticacion_seguras"))->render();
+        }
+        return response()->JSON($html);
+    }
+    public function autorizacion_adecuadas(Request $request)
+    {
+        $autorizacion_adecuadas = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $autorizacion_adecuadas = NotificacionUser::where("tipo", "AUTORIZACIÓN ADECUADA")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.autorizacion_adecuadas", compact("autorizacion_adecuadas"))->render();
+        } else {
+            $autorizacion_adecuadas = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "AUTORIZACIÓN ADECUADA")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.autorizacion_adecuadas", compact("autorizacion_adecuadas"))->render();
+        }
+
+        return response()->JSON($html);
+    }
+    public function prevension_ataques(Request $request)
+    {
+        $prevension_ataques = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $prevension_ataques = NotificacionUser::where("tipo", "PREVENCIÓN DE ATAQUES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.prevension_ataques", compact("prevension_ataques"))->render();
+        } else {
+            $prevension_ataques = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "PREVENCIÓN DE ATAQUES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.prevension_ataques", compact("prevension_ataques"))->render();
+        }
+
+        return response()->JSON($html);
+    }
+    public function alertas_notificaciones(Request $request)
+    {
+        $gestion_roles = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $alertas_notificaciones = NotificacionUser::where("tipo", "ALERTAS Y NOTIFICACIONES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.alertas_notificaciones", compact("alertas_notificaciones"))->render();
+        } else {
+            $alertas_notificaciones = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "ALERTAS Y NOTIFICACIONES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.alertas_notificaciones", compact("alertas_notificaciones"))->render();
+        }
+
+        return response()->JSON($html);
+    }
+    public function escaneo_vulnerabilidades(Request $request)
+    {
+        $escaneo_vulnerabilidades = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $escaneo_vulnerabilidades = NotificacionUser::where("tipo", "ESCANEO DE VULNERABILIDADES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.escaneo_vulnerabilidades", compact("escaneo_vulnerabilidades"))->render();
+        } else {
+            $escaneo_vulnerabilidades = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "ESCANEO DE VULNERABILIDADES")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.escaneo_vulnerabilidades", compact("escaneo_vulnerabilidades"))->render();
+        }
+
+        return response()->JSON($html);
+    }
+    public function capacitacion_seguridads(Request $request)
+    {
+        $capacitacion_seguridads = [];
+        $html = "";
+        if (Auth::user()->tipo == 'SUPERVISOR DE CALIDAD') {
+            $capacitacion_seguridads = NotificacionUser::where("tipo", "CAPACITACIÓN EN SEGURIDAD")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.supervisor.capacitacion_seguridads", compact("capacitacion_seguridads"))->render();
+        } else {
+            $capacitacion_seguridads = NotificacionUser::where("user_id", Auth::user()->id)->where("tipo", "CAPACITACIÓN EN SEGURIDAD")->orderBy("created_at", "desc")->paginate(5);
+            $html = view("evento_seguridads.parcial.user.capacitacion_seguridads", compact("capacitacion_seguridads"))->render();
+        }
+
+        return response()->JSON($html);
+    }
+
 
     public function byUser(Request $request)
     {
@@ -58,8 +140,10 @@ class EventoSeguridadController extends Controller
 
     public function show(NotificacionUser $notificacion_user)
     {
-        $notificacion_user->visto = 1;
-        $notificacion_user->save();
+        if (Auth::user()->id == $notificacion_user->user->id) {
+            $notificacion_user->visto = 1;
+            $notificacion_user->save();
+        }
 
         return view("evento_seguridads.show", compact("notificacion_user"));
     }
